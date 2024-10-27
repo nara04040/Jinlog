@@ -10,6 +10,7 @@ export function ClientBlogPost(props: {
   content: React.ReactNode;
   slug: string;
 }) {
+  const {content} = props
   const params = useParams();
   console.log(params);
 
@@ -18,7 +19,7 @@ export function ClientBlogPost(props: {
       title={props.title}
       date={props.date}
       author={props.author}
-      content={props.content}
+      content={typeof props.content === 'string' ? props.content : ''}
     />
   );
 }

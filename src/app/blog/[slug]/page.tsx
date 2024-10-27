@@ -3,6 +3,14 @@ import path from 'path';
 import matter from 'gray-matter';
 import { BlogLayout } from "@/app/components/layouts/BlogLayout";
 import { ClientBlogPost } from './ClientBlogPost';
+import { remark } from 'remark';
+import html from 'remark-html';
+import remarkGfm from 'remark-gfm';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
+import rehypeHighlight from 'rehype-highlight';
 
 export async function generateStaticParams() {
   const posts = await getPosts();
@@ -38,12 +46,24 @@ async function getPostContent(slug: string) {
   try {
     const fileContents = await fs.readFile(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
+    
+    const processedContent = await unified()
+      .use(remarkParse)
+      .use(remarkGfm)
+      .use(remarkRehype)
+      // ... existing code ...
+      .use(rehypeHighlight, { detect: true })  // ignoreMissing 제거
+// ... existing code ...
+      .use(rehypeStringify)
+      .process(content);
+    
+    const contentHtml = processedContent.toString();
 
     return {
       title: data.title,
       date: data.date,
       author: data.author,
-      content: content,
+      content: contentHtml,
     };
   } catch (error) {
     console.error('포스트를 불러오는 중 오류 발생:', error);

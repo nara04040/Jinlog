@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import 'prismjs/themes/prism-tomorrow.css';
+import 'highlight.js/styles/github-dark.css';
 
 
 const title = "test";

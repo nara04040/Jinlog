@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlogLayout } from "@/app/components/layouts/BlogLayout";
 import { Card, CardContent } from "@/app/components/ui/card";
+import { CoffeeIcon } from "lucide-react";
 
 type Post = {
   title: string;
@@ -90,7 +91,7 @@ function Posts({ posts }: { posts: Post[] }) {
     <div className="py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <h2 className="mb-8 font-cal text-3xl tracking-tight text-gray-900 sm:text-4xl">
-          From the blog
+          <CoffeeIcon />
         </h2>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {allPosts.map((post, index) => (
