@@ -10,7 +10,7 @@ export function BlogPost(props: {
   const { date, title, author, content } = props;
 
   return (
-    <article className="mx-auto max-w-2xl px-6 py-20">
+    <article className="mx-auto max-w-3xl px-2 py-20">
       <h2 className="text-3xl font-bold mb-4">{title}</h2>
       <p className="text-gray-600 mb-8">{`By ${author} on ${date}`}</p>
       <div className="prose prose-lg prose-slate max-w-none

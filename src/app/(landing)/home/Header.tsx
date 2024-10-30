@@ -9,7 +9,7 @@ import { cn } from "@/app/utils";
 
 const navigation = [
   { name: "블로그", href: "/#blog" },
-  { name: "포트폴리오", href: "/#faq" },
+  { name: "포트폴리오", href: "/#portfolio" },
 ];
 
 export function Header({ className }: { className?: string }) {
