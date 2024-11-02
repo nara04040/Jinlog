@@ -51,7 +51,7 @@ async function getPostContent(slug: string) {
       .use(remarkParse)
       .use(remarkGfm)
       .use(remarkRehype)
-      .use(rehypeHighlight, { detect: true })  // ignoreMissing 제거
+      .use(rehypeHighlight, { detect: true }) 
       .use(rehypeStringify)
       .process(content);
     

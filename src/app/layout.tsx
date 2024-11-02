@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import 'prismjs/themes/prism-tomorrow.css';
 import 'highlight.js/styles/github-dark.css';
-
+import { ThemeProvider } from 'next-themes'
 
 const title = "test";
 const description =
@@ -55,9 +55,11 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <body>
-        {children}
+        <ThemeProvider attribute="class">
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
