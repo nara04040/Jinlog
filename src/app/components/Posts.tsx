@@ -21,14 +21,14 @@ function PostFilters({
   categories, 
   selectedCategory, 
   tags, 
-  selectedTags, 
+  selectedTag, 
   onCategoryChange, 
   onTagChange 
 }: {
   categories: string[];
   selectedCategory: string;
   tags: string[];
-  selectedTags: string[];
+  selectedTag: string;
   onCategoryChange: (category: string) => void;
   onTagChange: (tag: string) => void;
 }) {
@@ -50,9 +50,9 @@ function PostFilters({
         {tags.map(tag => (
           <button
             key={tag}
-            onClick={() => onTagChange(tag)}
+            onClick={() => onTagChange(selectedTag === tag ? '' : tag)}
             className={`px-3 py-1 rounded-full text-sm ${
-              selectedTags.includes(tag)
+              selectedTag === tag
                 ? 'bg-blue-500 text-white'
                 : 'bg-gray-200 text-gray-700'
             }`}
@@ -107,41 +107,34 @@ function PostCard({ post }: { post: Post }) {
 
 export function Posts({ posts }: { posts: Post[] }) {
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedTag, setSelectedTag] = useState<string>('');
 
   const categories = [...new Set(posts.map(post => post.category))];
   const allTags = [...new Set(posts.flatMap(post => post.tags))];
 
   const filteredPosts = posts.filter(post => {
     const categoryMatch = !selectedCategory || post.category === selectedCategory;
-    const tagsMatch = selectedTags.length === 0 || 
-      selectedTags.every(tag => post.tags?.includes(tag));
-    return categoryMatch && tagsMatch;
+    const tagMatch = !selectedTag || post.tags.includes(selectedTag);
+    return categoryMatch && tagMatch;
   });
 
   return (
     <div className="py-16 sm:py-24">
-<div className='mx-auto max-w-7xl px-6 lg:px-8'>
-      <PostFilters
-        categories={categories}
-        selectedCategory={selectedCategory}
-        tags={allTags}
-        selectedTags={selectedTags}
-        onCategoryChange={setSelectedCategory}
-        onTagChange={(tag) => {
-          setSelectedTags(prev => 
-            prev.includes(tag)
-              ? prev.filter(t => t !== tag)
-              : [...prev, tag]
-          );
-        }}
-      />
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filteredPosts.map((post) => (
-          <PostCard key={post.file} post={post} />
-        ))}
+      <div className='mx-auto max-w-7xl px-6 lg:px-8'>
+        <PostFilters
+          categories={categories}
+          selectedCategory={selectedCategory}
+          tags={allTags}
+          selectedTag={selectedTag}
+          onCategoryChange={setSelectedCategory}
+          onTagChange={setSelectedTag}
+        />
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredPosts.map((post) => (
+            <PostCard key={post.file} post={post} />
+          ))}
+        </div>
       </div>
-</div>
     </div>
   );
 } 

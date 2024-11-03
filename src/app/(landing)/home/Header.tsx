@@ -36,7 +36,7 @@ export function Header({ className }: { className?: string }) {
             <MenuIcon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        <div className="hidden lg:flex lg:gap-x-12 items-center">
           {navigation.map((item) => (
             <Link
               key={item.name}
@@ -46,6 +46,9 @@ export function Header({ className }: { className?: string }) {
               {item.name}
             </Link>
           ))}
+          <div className="flex items-center">
+            <ThemeToggle />
+          </div>
         </div>
       </nav>
       <Dialog
@@ -98,10 +101,7 @@ export function Header({ className }: { className?: string }) {
                     {item.name}
                   </Link>
                 ))}
-                <div className="flex items-center px-3 py-2">
-                  <span className="text-base font-semibold leading-7 text-gray-900 dark:text-gray-100 mr-2">
-                    테마 변경
-                  </span>
+                <div className="flex py-2">
                   <ThemeToggle />
                 </div>
               </div>
