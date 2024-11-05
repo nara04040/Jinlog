@@ -6,6 +6,8 @@ import Link from "next/link";
 import { MenuIcon, XIcon } from "lucide-react";
 import { cn } from "@/app/utils";
 import { ThemeToggle } from "@/app/components/ui/ThemeToggle";
+import { CoffeeIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const navigation = [
   { name: "블로그", href: "/#blog" },
@@ -14,6 +16,12 @@ const navigation = [
 
 export function Header({ className }: { className?: string }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const router = useRouter();
+
+  const handleLogoClick = () => {
+    setMobileMenuOpen(false);
+    router.push("/");
+  };
 
   return (
     <header className={cn("absolute inset-x-0 top-0 z-50", className)}>
@@ -21,6 +29,7 @@ export function Header({ className }: { className?: string }) {
         className="flex justify-between px-6 py-4 lg:px-8"
         aria-label="Global"
       >
+        <CoffeeIcon className="h-8 w-8 ml-4 cursor-pointer" aria-hidden="true" onClick={handleLogoClick}/>
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Jin</span>

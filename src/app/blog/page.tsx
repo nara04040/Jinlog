@@ -1,9 +1,5 @@
-import {useState} from 'react';
-import Image from "next/image";
-import Link from "next/link";
 import { BlogLayout } from "@/app/components/layouts/BlogLayout";
 import { Card, CardContent } from "@/app/components/ui/card";
-import { CoffeeIcon } from "lucide-react";
 import { Posts } from '../components/Posts';
 
 
@@ -54,6 +50,22 @@ const mdxPosts: Post[] = [
     category: "Development",
     tags: ["JWT", "Authentication", "Security"]
   },
+  {
+    title: "localhost:3000의 진실",
+    file: "whatIsLocalhost",
+    description: "항상 사용하는 localhost:3000, 그 동작 원리와 진짜 의미",
+    date: "2024.10.12",
+    datetime: "2024-10-12",
+    author: {
+      name: "Jin",
+      role: "Founder",
+      href: "#",
+      imageUrl: "/시크한 리카르도.png",
+    },
+    imageUrl: "/시크한 리카르도.png",
+    category: "Development",
+    tags: ["localhost", "port", "CORS"]
+  }
 ];
 
 
