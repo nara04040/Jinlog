@@ -4,6 +4,7 @@ date: "2024-10-12"
 author: "Jin"
 category: "Development"
 tags: ["localhost", "port", "CORS"]
+description: "localhost:3000의 진짜 의미와 동작 원리, 그리고 보안 문제에 대해 깊이 있게 다루겠습니다."
 ---
 
 # 항상 사용하는 localhost:3000, 동작 원리와 진짜 의미
