@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from 'next/link';
 import { Card, CardContent } from "@/app/components/ui/card";
@@ -106,8 +106,17 @@ function PostCard({ post }: { post: Post }) {
 }
 
 export function Posts({ posts }: { posts: Post[] }) {
+  const [mounted, setMounted] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedTag, setSelectedTag] = useState<string>('');
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   const categories = [...new Set(posts.map(post => post.category))];
   const allTags = [...new Set(posts.flatMap(post => post.tags))];

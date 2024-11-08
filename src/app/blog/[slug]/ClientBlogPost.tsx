@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { BlogPost } from '@/app/components/BlogPost';
+import { useEffect, useState } from 'react';
 
 export function ClientBlogPost(props: {
   title: string;
@@ -10,9 +11,15 @@ export function ClientBlogPost(props: {
   content: React.ReactNode;
   slug: string;
 }) {
-  const {content} = props
-  const params = useParams();
-  console.log(params);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <BlogPost
