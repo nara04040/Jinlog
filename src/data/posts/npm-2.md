@@ -28,7 +28,9 @@ description: "npm을 제대로 알고 사용하는 방법"
 
 ### 1-4. pnpm의 주요 기능
 
-![pnpm workflow](./public/pnpm-workflow.png)
+![pnpm workflow](/public/images/pnpm-workflow.png)
+
+<img src="/public/images/pnpm-workflow.png" alt="pnpm workflow" />
 
 - 하드 링크(hard link) 사용: 동일한 패키지를 프로젝트마다 중복 저장하지 않고, 단일 저장소에서 참조합니다.
 - Immutable Lockfile: `pnpm-lock.yaml` 파일로 항상 일관된 빌드 환경을 보장합니다.
@@ -100,23 +102,26 @@ Yarn Workspaces 설정 예제
 }
 pnpm Workspaces 설정 예제
 
-# pnpm-workspace.yaml
+```yaml
 packages:
   - "packages/*"
-💡 실제 문제 해결: Yarn Workspaces를 사용하던 프로젝트에서 의존성 중복 문제가 발생하여 pnpm Workspaces로 마이그레이션했습니다. 이로 인해 디스크 사용량이 40% 감소하고, 빌드 속도가 크게 향상되었습니다.
+```
 
-3-2. 의존성 문제 해결: Peer Dependencies와 Workspaces 조합
+### 3-2. 의존성 문제 해결: Peer Dependencies와 Workspaces 조합
 모노레포에서 peerDependencies를 활용하면 패키지 간 의존성 관리가 쉬워집니다. 예를 들어, React 버전을 여러 패키지에서 공유하는 경우, Workspaces를 사용해 일관된 버전을 유지할 수 있습니다.
 
+```json
 "peerDependencies": {
   "react": ">=17.0.0"
 }
-4. 트러블슈팅: Yarn과 pnpm 관련 자주 발생하는 문제
+```
 
-4-1. node_modules 충돌 문제
+### 3-3. 트러블슈팅: Yarn과 pnpm 관련 자주 발생하는 문제
+
+#### 4-1. node_modules 충돌 문제
 모노레포에서 여러 패키지가 서로 다른 버전의 의존성을 요구할 때 node_modules 충돌이 발생할 수 있습니다. 이 경우 Yarn Berry의 Plug'n'Play 또는 pnpm의 strict-peer-dependencies 옵션을 활용해 문제를 해결할 수 있습니다.
 
-4-2. Yarn Berry와 pnpm의 ESM(ECMAScript Modules) 지원 문제
+#### 4-2. Yarn Berry와 pnpm의 ESM(ECMAScript Modules) 지원 문제
 최근 ESM 모듈이 증가하면서, **CJS(CommonJS)**와의 호환성 문제가 자주 발생합니다. pnpm은 이러한 문제를 해결하기 위해 overrides 기능을 제공하여, 특정 패키지를 강제로 CommonJS로 변환할 수 있습니다.
 
 // pnpm package.json 예제

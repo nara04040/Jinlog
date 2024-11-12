@@ -48,12 +48,12 @@ async function getPostContent(slug: string) {
     const { data, content } = matter(fileContents);
     
     const processedContent = await unified()
-      .use(remarkParse)
-      .use(remarkGfm)
-      .use(remarkRehype)
-      .use(rehypeHighlight, { detect: true }) 
-      .use(rehypeStringify)
-      .process(content);
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeHighlight, { detect: true })
+    .use(rehypeStringify)
+    .process(content);
     
     const contentHtml = processedContent.toString();
 
