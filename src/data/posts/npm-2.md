@@ -28,6 +28,8 @@ description: "npm을 제대로 알고 사용하는 방법"
 
 ### 1-4. pnpm의 주요 기능
 
+![pnpm workflow](./public/pnpm-workflow.png)
+
 - 하드 링크(hard link) 사용: 동일한 패키지를 프로젝트마다 중복 저장하지 않고, 단일 저장소에서 참조합니다.
 - Immutable Lockfile: `pnpm-lock.yaml` 파일로 항상 일관된 빌드 환경을 보장합니다.
 - 빠른 설치 속도: `npm install` 대비 3배 이상 빠른 속도차이가 존재합니다.[pnpm benchmark](https://pnpm.io/benchmarks)
@@ -43,6 +45,11 @@ description: "npm을 제대로 알고 사용하는 방법"
 | 디스크 사용량 | 높음 | 보통 | 낮음 (하드 링크) |
 | Zero-Installs | 불가 | 가능 | 가능 |
 
+### 1-6. 개발자들은 왜 npm을 사용하는 것일까?
+
+npm은 가장 널리 사용되는 패키지 매니저이며, 많은 개발자들이 익숙하기 때문입니다. 
+또한, npm에는 적용되어있는 많은 패키지가 있어 쉽게 찾을 수 있으며, 대부분의 프로젝트에서 사용되고 있기에 아직까지도 npm의 사용자들은 많습니다.
+하지만 npm의 단점은 분명하며 이런 단점을 해결하고자 현대 개발자들은 yarn과 pnpm을 사용하고있는 추세입니다.
 
 ## 2. Peer Dependencies이란?
 
