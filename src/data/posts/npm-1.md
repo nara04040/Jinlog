@@ -1,3 +1,12 @@
+---
+title: "npm을 제대로 알고 사용하기 - 1"
+date: "2024-11-11"
+author: "Jin"
+category: "Development"
+tags: ["npm", "package manager"]
+description: "npm을 제대로 알고 사용하는 방법"
+---
+
 # "npm을 제대로 활용하는 개발자가 반드시 알아야 할 실전 팁과 문제 해결법"
 
 npm(Node Package Manager)은 우리가 자주 사용하는 package Manager입니다. 그러나 기본적인 사용법에만 익숙할 뿐, 더 깊이 있는 활용법과 문제 해결에는 익숙하지 않는 모습을 보았으며, 이것을 제가 직접 경험했던 문제 상황과 해결방법을 이야기해 보겠습니다.
