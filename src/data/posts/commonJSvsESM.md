@@ -1,6 +1,6 @@
 # JavaScript의 ECMAScript Module과 CommonJS에 대해서
 
-## 1. 서론: 모듈 시스템의 필요성
+## 1. 모듈 시스템의 필요성
 
 JavaScript는 웹 개발에서 가장 많이 사용되는 언어 중 하나로, 시간이 지나면서 점점 더 복잡한 애플리케이션을 구현하는 데 활용되고 있습니다. 하지만 과거에는 JavaScript에서 모듈 시스템이 기본적으로 제공되지 않았습니다. 그 결과, 대규모 코드베이스에서는 코드의 재사용성, 가독성, 유지 보수성이 크게 떨어졌습니다.
 
@@ -14,30 +14,39 @@ ECMAScript Module(ESM)은 JavaScript의 공식 모듈 시스템으로, **ECMAScr
 
 ### 2.2. ESM의 기본 문법
 
-모듈 가져오기 (import)
+```js
+// 모듈 가져오기 (import)
 import { add, subtract } from './math.js';
 import defaultExport from './defaultModule.js';
+```
+
 ### 2.3. ESM의 주요 특징
+
+```js
 // Default export
 export default function() {
   console.log('Default Export');
 }
+```
 
 ### 2.4. ESM의 주요 특징
 
 정적 분석 (Static Analysis): import와 export는 코드 실행 전에 정적으로 분석됩니다. 이로 인해 **트리 쉐이킹(Tree Shaking)**이 가능해져, 사용되지 않는 코드를 제거하여 빌드 크기를 줄일 수 있습니다. 예를 들어, 트리 쉐이킹을 통해 React와 같은 라이브러리에서 사용하지 않는 유틸리티 함수가 포함되지 않도록 할 수 있습니다.
 비동기 로딩 (Asynchronous Loading): 브라우저에서는 <script type="module">을 통해 비동기적으로 모듈을 로드할 수 있습니다. 이를 통해 페이지의 초기 로딩 시간을 단축할 수 있습니다.
 지연 로딩 (Lazy Loading): 특정 조건이 충족될 때만 모듈을 로드하여, 초기 로딩 성능을 개선할 수 있습니다. 예를 들어, 버튼 클릭 시 모듈을 로드하도록 설정할 수 있습니다:
+
+```js
 document.getElementById('loadButton').addEventListener('click', async () => {
   const { dynamicFunction } = await import('./dynamicModule.js');
   dynamicFunction();
 });
+```
 
 ### 2.5. ESM의 브라우저 지원과 설정
 
-브라우저에서 ESM을 사용하려면 <script type="module">을 설정해야 합니다.
+브라우저에서 ESM을 사용하려면 `<script type="module">`을 설정해야 합니다.
 
-<script type="module" src="app.js"></script>
+`<script type="module" src="app.js"></script>`
 브라우저는 ESM을 자동으로 캐싱하므로, 동일한 모듈을 재사용할 때 성능 이점을 제공합니다.
 
 ## 3. CommonJS
@@ -48,12 +57,17 @@ CommonJS는 Node.js 환경에서 널리 사용되는 모듈 시스템으로, ES6
 
 ### 3.2. CommonJS의 기본 문법
 
-모듈 가져오기 (require)
+```js
+// 모듈 가져오기 (require)
 const fs = require('fs');
 const math = require('./math.js');
-모듈 내보내기 (module.exports)
+```
+
+```js
+// 모듈 내보내기 (module.exports)
 const add = (a, b) => a + b;
 module.exports = { add };
+```
 
 ### 3.3. CommonJS의 주요 특징
 
@@ -69,15 +83,24 @@ module.exports = { add };
 
 ### 4.1. 문법
 
-ESM	import, export
-CommonJS	require(), module.exports
+```js
+// ESM
+import, export
+```
+
+```js
+// CommonJS
+require(), module.exports
+```
 
 ### 4.2. 로딩 방식
 
-비동기 (Async)	동기 (Sync)
-정적 분석 가능 여부	가능	불가능
-사용 환경	브라우저, Node.js	주로 Node.js
-트리 쉐이킹 지원	지원	미지원
+|  | ESM | CommonJS |
+| --- | --- | --- |
+| 비동기 (Async) | 동기 (Sync) |
+| 정적 분석 가능 여부 | 가능 | 불가능 |
+| 사용 환경 | 브라우저, Node.js | 주로 Node.js |
+| 트리 쉐이킹 지원 | 지원 | 미지원 |
 
 ###  4.3. ESM과 CommonJS의 심화 비교
 
@@ -99,17 +122,25 @@ ESM은 불필요한 코드가 빌드에 포함되지 않도록 트리 쉐이킹�
 
 Node.js에서 ESM을 활성화하려면 package.json 파일에 다음과 같이 설정합니다.
 
+```json
 {
   "type": "module"
 }
+```
+
 이 설정을 통해 ESM 문법을 사용할 수 있으며, CommonJS와는 호환성 문제를 피하기 위해 주의가 필요합니다.
 
 ### 5.2. 혼용 사용 예시
-  
-CommonJS에서 ESM 모듈 가져오기:
+
+```js
+// CommonJS에서 ESM 모듈 가져오기:
 const { add } = await import('./math.mjs');
-ESM에서 CommonJS 모듈 가져오기:
+```
+
+```js
+// ESM에서 CommonJS 모듈 가져오기:
 import pkg from './module.cjs';
+```
 
 ## 6. 모듈 시스템 전환 시 고려 사항
 
@@ -123,6 +154,6 @@ JavaScript의 두 가지 대표적인 모듈 시스템인 ECMAScript Module과 C
 
 ## 8. 참고 자료 및 추가 학습 리소스
 
-MDN Web Docs - JavaScript Modules
-Node.js 공식 문서
-Webpack Documentation
+- MDN Web Docs - JavaScript Modules
+- Node.js 공식 문서
+- Webpack Documentation
