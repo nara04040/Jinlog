@@ -1,4 +1,3 @@
-// /app/components/BlogPost.tsx
 import React from 'react';
 
 export function BlogPost(props: {

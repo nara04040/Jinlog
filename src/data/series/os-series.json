@@ -1,0 +1,22 @@
+{
+  "id": "os-series",
+  "title": "운영체제 핵심 이해하기",
+  "description": "운영체제의 핵심 개념부터 실제 동작 원리까지 자세히 알아봅니다",
+  "posts": [
+    {
+      "id": "os-process-thread",
+      "title": "프로세스와 스레드",
+      "order": 1
+    },
+    {
+      "id": "os-memory-management",
+      "title": "메모리 관리와 가상 메모리",
+      "order": 2
+    },
+    {
+      "id": "os-file-system",
+      "title": "파일 시스템과 입출력",
+      "order": 3
+    }
+  ]
+} 

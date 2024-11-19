@@ -1,0 +1,27 @@
+{
+  "id": "js-core-series",
+  "title": "JavaScript 엔진 딥다이브",
+  "description": "V8 엔진의 동작 원리부터 JavaScript 런타임까지 자세히 알아봅니다",
+  "posts": [
+    {
+      "id": "js-v8-engine",
+      "title": "V8 엔진의 구조와 원리",
+      "order": 1
+    },
+    {
+      "id": "js-jit-compiler",
+      "title": "JIT 컴파일러의 동작 원리",
+      "order": 2
+    },
+    {
+      "id": "js-memory-management",
+      "title": "JavaScript 메모리 관리와 가비지 컬렉션",
+      "order": 3
+    },
+    {
+      "id": "js-event-loop",
+      "title": "이벤트 루프와 비동기 처리",
+      "order": 4
+    }
+  ]
+} 

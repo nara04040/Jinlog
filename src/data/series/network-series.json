@@ -1,0 +1,22 @@
+{
+  "id": "network-series",
+  "title": "개발자를 위한 네트워크 완벽 가이드",
+  "description": "웹 개발자가 반드시 알아야 할 네트워크 핵심 개념과 실무 적용 방법을 알아봅니다",
+  "posts": [
+    {
+      "id": "network-http-deep-dive",
+      "title": "HTTP 완벽 가이드",
+      "order": 1
+    },
+    {
+      "id": "network-tcp-ip",
+      "title": "TCP/IP 프로토콜 스택 이해하기",
+      "order": 2
+    },
+    {
+      "id": "network-security",
+      "title": "웹 보안과 HTTPS",
+      "order": 3
+    }
+  ]
+} 

@@ -1,0 +1,22 @@
+{
+  "id": "http-series",
+  "title": "HTTP/HTTPS 완벽 가이드",
+  "description": "웹의 핵심 프로토콜인 HTTP와 HTTPS의 동작 원리와 보안을 상세히 알아봅니다",
+  "posts": [
+    {
+      "id": "http-fundamentals",
+      "title": "HTTP 기초와 진화",
+      "order": 1
+    },
+    {
+      "id": "http-headers-methods",
+      "title": "HTTP 헤더와 메서드",
+      "order": 2
+    },
+    {
+      "id": "https-security",
+      "title": "HTTPS와 웹 보안",
+      "order": 3
+    }
+  ]
+} 

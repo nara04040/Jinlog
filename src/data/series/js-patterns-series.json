@@ -1,0 +1,22 @@
+{
+  "id": "js-patterns-series",
+  "title": "JavaScript 디자인 패턴과 아키텍처",
+  "description": "JavaScript/TypeScript 환경에서의 디자인 패턴, 아키텍처 패턴, 그리고 모노레포 구현까지 알아봅니다",
+  "posts": [
+    {
+      "id": "js-design-patterns",
+      "title": "JavaScript 디자인 패턴 기초",
+      "order": 1
+    },
+    {
+      "id": "js-architecture-patterns",
+      "title": "프론트엔드 아키텍처 패턴",
+      "order": 2
+    },
+    {
+      "id": "js-monorepo-guide",
+      "title": "모노레포 구축과 관리",
+      "order": 3
+    }
+  ]
+} 

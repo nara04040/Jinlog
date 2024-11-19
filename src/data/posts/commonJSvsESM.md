@@ -1,3 +1,12 @@
+---
+title: "JavaScript의 ECMAScript Module과 CommonJS에 대해서"
+date: "2024-11-15"
+author: "Jin"
+category: "Development"
+tags: ["JavaScript", "ESM", "CommonJS"]
+description: "JavaScript의 ECMAScript Module과 CommonJS에 대해서"
+---
+
 # JavaScript의 ECMAScript Module과 CommonJS에 대해서
 
 ## 1. 모듈 시스템의 필요성
