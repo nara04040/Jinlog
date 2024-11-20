@@ -21,6 +21,8 @@ type Post = {
   seriesOrder?: number;
 };
 
+type ViewMode = 'all' | 'series' | 'posts';
+
 function PostFilters({ 
   categories, 
   selectedCategory, 
@@ -42,6 +44,9 @@ function PostFilters({
   onTagChange: (tag: string) => void;
   onSeriesChange: (seriesId: string) => void;
 }) {
+  const [showAllTags, setShowAllTags] = useState(false);
+  const visibleTags = showAllTags ? tags : tags.slice(0, 6);
+
   return (
     <div className="mb-8 space-y-4">
       <div className="flex gap-4 mb-4">
@@ -68,7 +73,7 @@ function PostFilters({
         </select>
       </div>
       <div className="flex flex-wrap gap-2">
-        {tags.map(tag => (
+        {visibleTags.map(tag => (
           <button
             key={tag}
             onClick={() => onTagChange(selectedTag === tag ? '' : tag)}
@@ -81,6 +86,14 @@ function PostFilters({
             #{tag}
           </button>
         ))}
+        {tags.length > 6 && (
+          <button
+            onClick={() => setShowAllTags(!showAllTags)}
+            className="px-3 py-1 rounded-full text-sm bg-gray-400 text-gray-900 hover:bg-gray-300"
+          >
+            {showAllTags ? '접기' : `+${tags.length - 6}개 더보기`}
+          </button>
+        )}
       </div>
     </div>
   );
@@ -156,11 +169,13 @@ function SeriesCard({ series, onClick }: { series: Series; onClick: () => void }
 export function Posts({ 
   posts, 
   series,
-  initialViewMode = 'all'
+  initialViewMode = 'all',
+  currentSeriesId
 }: { 
-  posts: Post[], 
+  posts: Post[],
   series: Series[],
-  initialViewMode?: 'all' | 'series' | 'posts'
+  initialViewMode?: ViewMode,
+  currentSeriesId?: string
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -168,7 +183,7 @@ export function Posts({
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedTag, setSelectedTag] = useState<string>('');
   const [selectedSeries, setSelectedSeries] = useState<string>('');
-  const [viewMode, setViewMode] = useState<'all' | 'series' | 'posts'>(initialViewMode);
+  const [viewMode, setViewMode] = useState<ViewMode>(initialViewMode);
 
   useEffect(() => {
     setMounted(true);
@@ -208,7 +223,7 @@ export function Posts({
     router.push('/blog?view=series');
   };
 
-  const handleViewModeChange = (mode: 'all' | 'series' | 'posts') => {
+  const handleViewModeChange = (mode: ViewMode) => {
     setViewMode(mode);
     if (mode === 'series') {
       router.push('/blog?view=series');
@@ -231,6 +246,10 @@ export function Posts({
   const sortedPosts = selectedSeries
     ? [...filteredPosts].sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0))
     : filteredPosts;
+
+  const currentSeries = currentSeriesId 
+    ? series.find(s => s.id === currentSeriesId)
+    : null;
 
   return (
     <div className="py-16 sm:py-24">
@@ -313,6 +332,12 @@ export function Posts({
               />
             ))}
           </div>
+        )}
+
+        {currentSeries && (
+          <h2 className="text-2xl font-bold mb-4">
+            {currentSeries.title}
+          </h2>
         )}
       </div>
     </div>

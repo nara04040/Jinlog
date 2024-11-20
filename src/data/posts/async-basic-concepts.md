@@ -7,7 +7,7 @@ category: "Programming"
 tags: ["JavaScript", "Async", "Promise"]
 series: "async-series"
 seriesOrder: 1
-imageUrl: "/next.svg"
+imageUrl: "/async.png"
 ---
 
 # 비동기 프로그래밍 기초

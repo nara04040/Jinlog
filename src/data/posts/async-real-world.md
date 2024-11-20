@@ -7,7 +7,7 @@ category: "Programming"
 tags: ["JavaScript", "Async", "Performance"]
 series: "async-series"
 seriesOrder: 3
-imageUrl: "/next.svg"
+imageUrl: "/async.png"
 ---
 
 # 실전 비동기 프로그래밍

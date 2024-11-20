@@ -7,7 +7,7 @@ category: "Programming"
 tags: ["JavaScript", "Async", "Error Handling"]
 series: "async-series"
 seriesOrder: 2
-imageUrl: "/next.svg"
+imageUrl: "/async.png"
 ---
 
 # 비동기 패턴과 에러 처리
