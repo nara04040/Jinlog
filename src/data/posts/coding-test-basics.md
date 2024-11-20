@@ -34,7 +34,7 @@ const sum = numbers.reduce((acc, cur) => acc + cur, 0);  // 15
 // sort: 정렬
 const sorted = [...numbers].sort((a, b) => b - a);  // [5, 4, 3, 2, 1]
 
-// 배열 복사와 스프레��� 연산자
+// 배열 복사와 스프레드 연산자
 const copy = [...numbers];
 const combined = [...numbers, ...evens];
 ```
