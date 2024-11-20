@@ -1,0 +1,22 @@
+{
+  "id": "coding-test-series",
+  "title": "JavaScript 코딩 테스트 완벽 대비",
+  "description": "JavaScript로 풀어보는 코딩 테스트 문제와 핵심 알고리즘 패턴을 알아봅니다",
+  "posts": [
+    {
+      "id": "coding-test-basics",
+      "title": "코딩 테스트 기초: JavaScript 문제 풀이 전략",
+      "order": 1
+    },
+    {
+      "id": "coding-test-data-structures",
+      "title": "자료구조 마스터하기: 배열, 해시, 스택/큐",
+      "order": 2
+    },
+    {
+      "id": "coding-test-algorithms",
+      "title": "핵심 알고리즘: 정렬, DFS/BFS, 다이나믹 프로그래밍",
+      "order": 3
+    }
+  ]
+} 

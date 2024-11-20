@@ -1,0 +1,22 @@
+{
+  "id": "type-system-series",
+  "title": "타입 시스템 완벽 가이드",
+  "description": "프로그래밍 언어의 타입 시스템과 타입 이론에 대해 깊이 있게 알아봅니다",
+  "posts": [
+    {
+      "id": "type-system-basics",
+      "title": "타입 시스템의 기초",
+      "order": 1
+    },
+    {
+      "id": "type-system-advanced",
+      "title": "고급 타입 시스템 기능",
+      "order": 2
+    },
+    {
+      "id": "type-system-typescript",
+      "title": "TypeScript의 타입 시스템",
+      "order": 3
+    }
+  ]
+} 

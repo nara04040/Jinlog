@@ -1,0 +1,27 @@
+{
+  "id": "web-rendering-series",
+  "title": "웹 렌더링 완벽 가이드",
+  "description": "SSR, CSR, ISR, SSG 등 다양한 웹 렌더링 방식의 개념과 실전 활용법을 상세히 알아봅니다",
+  "posts": [
+    {
+      "id": "web-rendering-overview",
+      "title": "웹 렌더링의 모든 것: SSR, CSR, ISR, SSG 완벽 이해",
+      "order": 1
+    },
+    {
+      "id": "ssr-deep-dive",
+      "title": "SSR 심층 분석: 서버 사이드 렌더링의 모든 것",
+      "order": 2
+    },
+    {
+      "id": "csr-optimization",
+      "title": "CSR 최적화: 클라이언트 사이드 렌더링 마스터하기",
+      "order": 3
+    },
+    {
+      "id": "isr-ssg-strategies",
+      "title": "ISR과 SSG: 정적 생성 전략과 증분 정적 재생성",
+      "order": 4
+    }
+  ]
+} 

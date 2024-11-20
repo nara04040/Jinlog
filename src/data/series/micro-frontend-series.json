@@ -1,0 +1,22 @@
+{
+  "id": "micro-frontend-series",
+  "title": "마이크로 프론트엔드 완벽 가이드",
+  "description": "마이크로 프론트엔드 아키텍처의 개념부터 실전 구현까지 상세히 알아봅니다",
+  "posts": [
+    {
+      "id": "micro-frontend-basics",
+      "title": "마이크로 프론트엔드 기초: 개념과 아키텍처",
+      "order": 1
+    },
+    {
+      "id": "micro-frontend-integration",
+      "title": "마이크로 프론트엔드 통합 전략",
+      "order": 2
+    },
+    {
+      "id": "micro-frontend-deployment",
+      "title": "마이크로 프론트엔드 배포와 운영",
+      "order": 3
+    }
+  ]
+} 
