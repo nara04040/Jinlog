@@ -7,7 +7,7 @@ category: "Algorithm"
 tags: ["JavaScript", "CodingTest", "Algorithm"]
 series: "coding-test-series"
 seriesOrder: 1
-imageUrl: "/next.svg"
+imageUrl: "/javascript-codingtest.jpg"
 ---
 
 # 코딩 테스트 기초: JavaScript 문제 풀이 전략

@@ -7,7 +7,7 @@ category: "Algorithm"
 tags: ["JavaScript", "DataStructure", "Algorithm"]
 series: "coding-test-series"
 seriesOrder: 2
-imageUrl: "/next.svg"
+imageUrl: "/javascript-codingtest.jpg"
 ---
 
 # 자료구조 마스터하기: 배열, 해시, 스택/큐
