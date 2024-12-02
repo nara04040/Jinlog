@@ -5,6 +5,7 @@ author: "Jin"
 category: "Development"
 tags: ["npm", "package manager"]
 description: "npm을 제대로 알고 사용하는 방법"
+imageUrl: "/npm.png"
 ---
 
 # "npm을 제대로 활용하는 개발자가 반드시 알아야 할 실전 팁과 문제 해결법"

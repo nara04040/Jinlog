@@ -5,6 +5,7 @@ author: "Jin"
 category: "Development"
 tags: ["npm", "package manager"]
 description: "npm을 제대로 알고 사용하는 방법"
+imageUrl: "/npm.png"
 ---
 
 # Yarn과 pnpm 비교 및 Peer Dependencies에 대해서

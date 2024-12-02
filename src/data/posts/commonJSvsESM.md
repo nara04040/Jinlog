@@ -5,6 +5,7 @@ author: "Jin"
 category: "Development"
 tags: ["JavaScript", "ESM", "CommonJS"]
 description: "JavaScript의 ECMAScript Module과 CommonJS에 대해서"
+imageUrl: "/javascript-logo.webp"
 ---
 
 # JavaScript의 ECMAScript Module과 CommonJS에 대해서
