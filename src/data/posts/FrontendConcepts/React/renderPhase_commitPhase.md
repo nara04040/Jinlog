@@ -12,7 +12,11 @@ imageUrl: "/react.png"
 
 # React의 Render Phase와 Commit Phase 깊게 이해하기
 
-React의 렌더링 프로세스는 크게 세 단계로 나눌 수 있습니다: Trigger Phase → Render Phase → Commit Phase. 이 글에서는 각 단계의 깊이 있는 이해글을 작성하겠습니다.
+React의 렌더링 프로세스는 크게 세 단계로 나눌 수 있습니다
+
+**Trigger Phase → Render Phase → Commit Phase**
+
+이 글에서는 각 단계의 깊이 있는 이해글을 작성하겠습니다.
 
 ## Trigger Phase: 렌더링의 시작점
 
@@ -111,7 +115,7 @@ Trigger Phase가 완료되면 React는 다음과 같은 과정을 거쳐 Render 
 
 ## Render Phase: Virtual DOM과 Fiber의 실제 동작
 
-![React의 렌더링 프로세스](/images/react-render-commit-phase.png)
+![React의 렌더링 프로세스](/react-render-phase.png)
 
 위 그림은 React의 렌더링 프로세스를 보여줍니다:
 - 왼쪽의 Render Phase에서는 Virtual DOM을 통해 변경사항을 계산합니다

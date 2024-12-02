@@ -45,30 +45,44 @@ export function ClientBlogPost({ post, searchParams }: Props) {
 
   return (
     <BlogLayout>
-      <div className="pt-20 relative">
-        <div className="mb-8 absolute top-20 left-20">  
-          <Link 
-            href={backUrl}
-            className="text-blue-500 hover:text-blue-600 flex items-center gap-2"
-          >
-            ← {searchParams.from === 'series' ? '시리즈 목록으로' : '블로그로'} 돌아가기
-          </Link>
-        </div>
-        <article className="prose prose-slate dark:prose-invert max-w-none">
-          <h1>{post.title}</h1>
-          <div className="flex items-center gap-4 mb-8">
-            <div className="flex items-center gap-2">
-              <img 
-                src={post.author.imageUrl} 
-                alt={post.author.name}
-                className="w-10 h-10 rounded-full"
-              />
-              <span>{post.author.name}</span>
-            </div>
-            <time dateTime={post.datetime}>{post.date}</time>
+      <div className="min-h-screen bg-white dark:bg-gray-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+          <div className="mb-8">
+            <Link 
+              href={backUrl}
+              className="text-blue-500 hover:text-blue-600 flex items-center gap-2"
+            >
+              ← {searchParams.from === 'series' ? '시리즈 목록으로' : '블로그로'} 돌아가기
+            </Link>
           </div>
-          <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
-        </article>
+
+          <article className="prose prose-slate dark:prose-invert mx-auto max-w-3xl">
+            <header className="mb-8 text-center">
+              <h1 className="text-4xl font-bold mb-4 !mt-0">
+                {post.title}
+              </h1>
+              <div className="flex items-center justify-start gap-4 text-gray-600 dark:text-gray-400">
+                <div className="flex items-center gap-2">
+                  <img 
+                    src={post.author.imageUrl} 
+                    alt={post.author.name}
+                    className="w-10 h-10 rounded-full"
+                  />
+                  <span>{post.author.name}</span>
+                </div>
+                <span>•</span>
+                <time dateTime={post.datetime}>{post.date}</time>
+              </div>
+            </header>
+
+            <div 
+              className="mt-8"
+              dangerouslySetInnerHTML={{ __html: contentHtml }} 
+            />
+          </article>
+
+          <div className="h-20" />
+        </div>
       </div>
     </BlogLayout>
   )

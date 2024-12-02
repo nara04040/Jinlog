@@ -29,13 +29,13 @@ imageUrl: "/npm.png"
 
 ### 1-4. pnpm의 주요 기능
 
-![pnpm workflow](/public/images/pnpm-workflow.png)
+![pnpm workflow](/images/pnpm-workflow.png)
 
 <img src="/public/images/pnpm-workflow.png" alt="pnpm workflow" />
 
 - 하드 링크(hard link) 사용: 동일한 패키지를 프로젝트마다 중복 저장하지 않고, 단일 저장소에서 참조합니다.
 - Immutable Lockfile: `pnpm-lock.yaml` 파일로 항상 일관된 빌드 환경을 보장합니다.
-- 빠른 설치 속도: `npm install` 대비 3배 이상 빠른 속도차이가 존재합니다.[pnpm benchmark](https://pnpm.io/benchmarks)
+- 빠른 설치 속도: `npm install` 대비 3배 이상 빠른 속도차이가 존재합니다. [(pnpm benchmark 내용)](https://pnpm.io/benchmarks)
 - Strict Dependencies: 의존성이 명확하게 정의되지 않은 경우 설치를 거부해 의존성 문제를 발견할 수 있습니다.
 
 ### 1-5. Yarn과 pnpm 비교
@@ -75,9 +75,12 @@ peerDependencies는 특정 라이브러리가 호환성을 보장받기 위해 �
 - 호환성 보장: 프로젝트와 플러그인 간의 버전 충돌을 방지합니다.
 - 실전 문제: 한 프로젝트에서 여러 플러그인이 React 16과 React 17을 요구하는 경우, 충돌로 인해 빌드가 실패할 수 있습니다. 이 경우 resolutions 필드를 활용해 특정 버전을 강제로 고정할 수 있습니다.
 
+
+```json
 "resolutions": {
   "react": "17.0.2"
 }
+```
 
 ### 2-3. Peer Dependencies 문제 해결: npm, Yarn, pnpm에서의 차이
 
@@ -123,13 +126,16 @@ packages:
 모노레포에서 여러 패키지가 서로 다른 버전의 의존성을 요구할 때 node_modules 충돌이 발생할 수 있습니다. 이 경우 Yarn Berry의 Plug'n'Play 또는 pnpm의 strict-peer-dependencies 옵션을 활용해 문제를 해결할 수 있습니다.
 
 #### 4-2. Yarn Berry와 pnpm의 ESM(ECMAScript Modules) 지원 문제
-최근 ESM 모듈이 증가하면서, **CJS(CommonJS)**와의 호환성 문제가 자주 발생합니다. pnpm은 이러한 문제를 해결하기 위해 overrides 기능을 제공하여, 특정 패키지를 강제로 CommonJS로 변환할 수 있습니다.
+최근 ESM 모듈이 증가하면서, **CJS(CommonJS)** 와의 호환성 문제가 자주 발생합니다. pnpm은 이러한 문제를 해결하기 위해 overrides 기능을 제공하여, 특정 패키지를 강제로 CommonJS로 변환할 수 있습니다.
 
+```json
 // pnpm package.json 예제
 "overrides": {
   "some-package": "1.2.3"
 }
-5. 결론: Yarn과 pnpm, 무엇을 선택해야 할까?
+```
+
+#### 5. 결론: Yarn과 pnpm, 무엇을 선택해야 할까?
 
 Yarn이 유리한 경우
 모노레포 프로젝트를 운영 중이며, Zero-Installs가 필요한 경우
@@ -137,5 +143,7 @@ Yarn이 유리한 경우
 pnpm이 유리한 경우
 대규모 프로젝트에서 디스크 공간 절약이 필요한 경우
 엄격한 의존성 관리로 호환성 문제를 사전에 방지하고 싶은 경우
-💡 최종 팁: 프로젝트의 규모와 필요에 따라 Yarn과 pnpm을 선택해 사용하세요. 특히 모노레포 환경에서 pnpm Workspaces와 Yarn Workspaces를 비교하고, 디스크 사용량과 설치 속도를 최적화할 수 있습니다.
+
+
+#### 💡 최종 팁: 프로젝트의 규모와 필요에 따라 Yarn과 pnpm을 선택해 사용하세요. 특히 모노레포 환경에서 pnpm Workspaces와 Yarn Workspaces를 비교하고, 디스크 사용량과 설치 속도를 최적화할 수 있습니다.
 
