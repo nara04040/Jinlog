@@ -2,7 +2,11 @@ export interface Series {
   id: string;
   title: string;
   description: string;
-  posts: SeriesPost[];
+  posts: {
+    id: string;
+    title: string;
+    // 필요한 다른 포스트 관련 필드들...
+  }[];
 }
 
 export interface SeriesPost {

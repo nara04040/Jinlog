@@ -1,8 +1,34 @@
+export interface Author {
+  name: string
+  role: string
+  href: string
+  imageUrl: string
+}
+
+export interface PostFrontMatter {
+  title: string
+  date: string
+  author: string
+  description: string
+  category: string
+  tags: string[]
+  series?: string
+  seriesOrder?: number
+  imageUrl: string
+}
+
 export interface Post {
-  file: string | string[] | undefined;
-  id: string; // 고유 ID
-  title: string;
-  content: string; // Markdown 형식의 내용
-  author: string;
-  date: string; // ISO 형식의 날짜
+  title: string
+  date: string
+  description: string
+  category: string
+  tags: string[]
+  series?: string
+  seriesOrder?: number
+  imageUrl: string
+  slug: string
+  content: string
+  file: string
+  datetime: string
+  author: Author
 }

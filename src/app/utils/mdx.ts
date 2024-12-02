@@ -1,18 +1,44 @@
-import fs from 'fs/promises'
+import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { Post, PostFrontMatter, Author } from '../types/post'
 
-export async function getAllPosts() {
-  const postsDirectory = path.join(process.cwd(), 'src/data/posts')
-  const fileNames = await fs.readdir(postsDirectory)
+const postsDirectory = path.join(process.cwd(), 'src/data/posts')
+
+export async function getAllPosts(): Promise<Post[]> {
+  const getMarkdownFiles = (dir: string): string[] => {
+    const entries = fs.readdirSync(dir, { withFileTypes: true })
+    
+    const files = entries
+      .filter(entry => {
+        if (entry.name.startsWith('.')) return false
+        
+        if (entry.isDirectory()) {
+          return true
+        }
+        
+        return entry.isFile() && entry.name.endsWith('.md')
+      })
+      .map(entry => {
+        if (entry.isDirectory()) {
+          return getMarkdownFiles(path.join(dir, entry.name))
+        }
+        return path.join(dir, entry.name)
+      })
+      .flat()
+      
+    return files
+  }
+
+  const markdownFiles = getMarkdownFiles(postsDirectory)
   
   const posts = await Promise.all(
-    fileNames.map(async (fileName) => {
-      const filePath = path.join(postsDirectory, fileName)
-      const fileContents = await fs.readFile(filePath, 'utf8')
-      const { data } = matter(fileContents)
+    markdownFiles.map(async (filePath) => {
+      const fileContents = fs.readFileSync(filePath, 'utf8')
+      const { data, content } = matter(fileContents)
+      const frontMatter = data as PostFrontMatter
       
-      const dateStr = data.date
+      const dateStr = frontMatter.date
       let formattedDate = dateStr
       let isoDate = new Date().toISOString()
 
@@ -25,29 +51,39 @@ export async function getAllPosts() {
           }
         }
       } catch (error) {
-        console.error(`Invalid date format for ${fileName}:`, dateStr)
+        console.error(`Invalid date format for ${filePath}:`, dateStr)
+      }
+
+      const author: Author = {
+        name: frontMatter.author,
+        role: "Developer",
+        href: "#",
+        imageUrl: "/시크한 리카르도.png"
       }
       
       return {
-        title: data.title,
-        description: data.description || '',
+        title: frontMatter.title,
         date: formattedDate,
+        description: frontMatter.description,
+        category: frontMatter.category,
+        tags: frontMatter.tags,
+        series: frontMatter.series,
+        seriesOrder: frontMatter.seriesOrder,
+        imageUrl: frontMatter.imageUrl,
+        slug: path.basename(filePath, '.md'),
+        content,
+        file: path.basename(filePath),
         datetime: isoDate,
-        author: {
-          name: data.author,
-          role: "Developer",
-          href: "#",
-          imageUrl: "/시크한 리카르도.png"
-        },
-        imageUrl: data.imageUrl || "/next.svg",
-        category: data.category || "Uncategorized",
-        tags: data.tags || [],
-        file: fileName.replace(/\.md$/, ''),
-        series: data.series || null,
-        seriesOrder: data.seriesOrder || null
-      }
+        author
+      } as Post
     })
   )
 
-  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  return posts.sort((a, b) => {
+    if (a.date < b.date) {
+      return 1
+    } else {
+      return -1
+    }
+  })
 } 

@@ -146,6 +146,8 @@ function PostCard({ post, fromSeries }: { post: Post; fromSeries?: boolean }) {
 }
 
 function SeriesCard({ series, onClick }: { series: Series; onClick: () => void }) {
+  const postCount = series.posts?.length || 0;
+
   return (
     <Card 
       className="overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer"
@@ -159,7 +161,7 @@ function SeriesCard({ series, onClick }: { series: Series; onClick: () => void }
           {series.description}
         </p>
         <div className="text-sm text-gray-500">
-          {series.posts.length}개의 포스트
+          {postCount}개의 포스트
         </div>
       </CardContent>
     </Card>
