@@ -1,22 +1,6 @@
 {
   "id": "cs-series",
-  "title": "CS 지식 완전정복",
-  "description": "컴퓨터 공학 핵심 개념을 쉽게 이해하는 시리즈",
-  "posts": [
-    {
-      "id": "cs-operating-system",
-      "title": "운영체제 핵심 개념",
-      "order": 1
-    },
-    {
-      "id": "cs-network",
-      "title": "네트워크 기초",
-      "order": 2
-    },
-    {
-      "id": "cs-database",
-      "title": "데이터베이스 기초",
-      "order": 3
-    }
-  ]
+  "title": "CS지식 완전 정복",
+  "description": "CS 핵심 지식을 깊이있게 다루는 시리즈입니다.",
+  "order": 1
 } 

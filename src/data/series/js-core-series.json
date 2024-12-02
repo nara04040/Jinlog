@@ -1,6 +1,6 @@
 {
   "id": "js-core-series",
-  "title": "JavaScript 엔진 딥다이브",
+  "title": "10. JavaScript 엔진 딥다이브",
   "description": "V8 엔진의 동작 원리부터 JavaScript 런타임까지 자세히 알아봅니다",
   "posts": [
     {

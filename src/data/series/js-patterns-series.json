@@ -1,6 +1,6 @@
 {
   "id": "js-patterns-series",
-  "title": "JavaScript 디자인 패턴과 아키텍처",
+  "title": "11. JavaScript 디자인 패턴과 아키텍처",
   "description": "JavaScript/TypeScript 환경에서의 디자인 패턴, 아키텍처 패턴, 그리고 모노레포 구현까지 알아봅니다",
   "posts": [
     {

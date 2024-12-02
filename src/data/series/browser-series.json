@@ -1,22 +1,5 @@
 {
   "id": "browser-series",
-  "title": "브라우저 동작 원리 완벽 가이드",
-  "description": "웹 브라우저의 내부 동작 원리부터 최적화 기법까지 상세히 알아봅니다",
-  "posts": [
-    {
-      "id": "browser-rendering",
-      "title": "브라우저 렌더링 과정",
-      "order": 1
-    },
-    {
-      "id": "browser-javascript",
-      "title": "자바스크립트 엔진과 실행 컨텍스트",
-      "order": 2
-    },
-    {
-      "id": "browser-network",
-      "title": "브라우저의 네트워크 통신",
-      "order": 3
-    }
-  ]
+  "title": "2. 브라우저 동작원리 시리즈",
+  "description": "브라우저의 동작 원리를 상세히 설명하는 시리즈입니다."
 } 

@@ -7,12 +7,88 @@ category: "Algorithm"
 tags: ["Algorithm", "Coding Test", "Big-O", "Time Complexity", "Performance"]
 series: "coding-test-series"
 seriesOrder: 2
-imageUrl: "/next.svg"
+imageUrl: "/public/javascript-codingtest.jpg"
 ---
 
 # 시간복잡도와 Big-O 표기법
 
 ## 1. 시간복잡도가 중요한 이유
+
+### 1.0 시간복잡도란?
+
+<img src="/public/Big-o.png">
+
+시간복잡도는 **알고리즘의 성능을 나타내는 척도**로, 입력 크기에 따라 알고리즘이 실행되는 시간(*연산의 횟수*)을 분석한 것입니다.
+
+#### 시간복잡도의 정의
+- 알고리즘이 문제를 해결하는 데 필요한 연산의 횟수
+- 입력 크기(n)에 대한 함수로 표현
+- 실제 실행 시간이 아닌 연산 횟수의 증가율에 초점
+
+#### 시간복잡도를 측정하는 방법
+1. **연산 횟수 계산**
+```javascript
+// 단순 접근: 1번의 연산
+const first = array[0];  // 1회 연산
+
+// 선형 탐색: n번의 연산
+for(let i = 0; i < n; i++) {  // n회 연산
+  if(array[i] === target) return i;
+}
+```
+
+2. **핵심 연산 파악**
+```javascript
+function findMax(arr) {
+  let max = arr[0];        // 1회 연산
+  for(let i = 1; i < arr.length; i++) {  // n-1회 반복
+    if(arr[i] > max) {     // n-1회 비교 연산
+      max = arr[i];        // 최대 n-1회 대입 연산
+    }
+  }
+  return max;
+}
+// 핵심 연산: 비교 연산 (n-1회)
+```
+
+3. **최선, 평균, 최악의 경우**
+```javascript
+function linearSearch(arr, target) {
+  for(let i = 0; i < arr.length; i++) {
+    if(arr[i] === target) return i;
+  }
+  return -1;
+}
+// 최선의 경우: 1회 (첫 번째에서 발견)
+// 평균의 경우: n/2회
+// 최악의 경우: n회 (마지막에서 발견 또는 미발견)
+```
+
+#### 시간복잡도가 중요한 이유
+1. **알고리즘 성능 예측**
+   - 입력 크기가 커질 때 실행 시간이 어떻게 증가하는지 예측
+   - 메모리나 CPU 자원의 사용량 추정
+   - ~~코딩테스트에 통과하기위해🥲~~
+
+2. **알고리즘 비교**
+```javascript
+// 두 가지 다른 접근 방식 비교
+function sum1(n) {  // O(n)
+  let sum = 0;
+  for(let i = 1; i <= n; i++) {
+    sum += i;
+  }
+  return sum;
+}
+
+function sum2(n) {  // O(1)
+  return (n * (n + 1)) / 2;
+}
+```
+
+3. **최적화 가능성 판단**
+   - 현재 알고리즘이 이론적 한계에 도달했는지 확인
+   - 더 나은 해결 방법이 있는지 판단
 
 ### 1.1 코딩테스트에서의 시간제한
 
@@ -60,7 +136,7 @@ console.timeEnd('효율적');    // 약 0.1ms
 
 ### 2.1 Big-O란?
 
-Big-O 표기법은 알고리즘의 시간복잡도를 표현하는 방법으로, 입력 크기에 따른 알고리즘의 최악의 실행 시간을 나타냅니다.
+Big-O 표기법은 **알고리즘의 시간복잡도를 표현하는 방법**으로, 입력 크기에 따른 알고리즘의 최악의 실행 시간을 나타냅니다.
 
 ```text
 입력 크기(n) → 증가
@@ -141,7 +217,7 @@ function bubbleSort(arr) {
 ### 2.3 시간복잡도 비교 차트
 
 ```text
-성능: O(1) < O(log n) < O(n) < O(n log n) < O(n²) < O(2ⁿ)
+성능: O(1) > O(log n) > O(n) > O(n log n) > O(n²) > O(2ⁿ)
 
 입력 크기(n) │    10    │    100   │   1000   │
 ────────────┼──────────┼──────────┼──────────┤
@@ -342,7 +418,7 @@ function fib2(n, memo = new Map()) {
 
 1. **시간복잡도의 중요성**
    - 코딩테스트의 시간제한 준수
-   - 효율적인 알고리즘 설계의 기준
+   - 효율적인 알고리즘 설계의 기준  
 
 2. **주요 시간복잡도**
    - O(1): 상수 시간
@@ -360,6 +436,5 @@ function fib2(n, memo = new Map()) {
 
 1. 주어진 배열에서 중복된 원소를 제거하는 가장 효율적인 방법은?
 2. N개의 정수를 정렬하는 데 필요한 최소 시간복잡도는?
-3. 두 배열의 교집합을 찾는 최적의 알고리즘은?
+3. 두 배열의 교집합을 찾는 최적 알고리즘은?
 
-이러한 문제들을 직접 풀어보면서 시간복잡도를 고려한 알고리즘 설계 능력을 향상시켜보세요. 
