@@ -168,15 +168,15 @@ function SeriesCard({ series, onClick }: { series: Series; onClick: () => void }
   );
 }
 
-export function Posts({ 
+function PostsContent({ 
   posts, 
   series,
-  initialViewMode = 'all',
+  initialViewMode,
   currentSeriesId
 }: { 
   posts: Post[],
   series: Series[],
-  initialViewMode?: ViewMode,
+  initialViewMode: ViewMode,
   currentSeriesId?: string
 }) {
   const router = useRouter();
@@ -256,96 +256,110 @@ export function Posts({
     : null;
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="py-16 sm:py-24">
-        <div className='mx-auto max-w-7xl px-6 lg:px-8'>
-          <div className="mb-8 flex gap-4">
-            <button
-              onClick={() => handleViewModeChange('all')}
-              className={`px-4 py-2 rounded-md ${
-                viewMode === 'all'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200 text-gray-700'
-              }`}
-            >
-              전체 포스트
-            </button>
-            <button
-              onClick={() => handleViewModeChange('series')}
-              className={`px-4 py-2 rounded-md ${
-                viewMode === 'series'
-                  ? 'bg-blue-500 text-white'
-                  : 'bg-gray-200 text-gray-700'
-              }`}
-            >
-              시리즈
-            </button>
-          </div>
-
-          <PostFilters
-            categories={categories}
-            selectedCategory={selectedCategory}
-            tags={allTags}
-            selectedTag={selectedTag}
-            series={series}
-            selectedSeries={selectedSeries}
-            onCategoryChange={setSelectedCategory}
-            onTagChange={setSelectedTag}
-            onSeriesChange={handleSeriesSelect}
-          />
-          
-          {viewMode === 'posts' && selectedSeries && (
-            <>
-              <div className="mb-8">
-                <button 
-                  onClick={handleBackToSeries}
-                  className="text-blue-500 hover:text-blue-600 flex items-center gap-2"
-                >
-                  ← 시리즈 목록으로 돌아가기
-                </button>
-              </div>
-              <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <h2 className="text-xl font-bold mb-2">
-                  {series.find(s => s.id === selectedSeries)?.title}
-                </h2>
-                <p className="text-gray-600 dark:text-gray-300">
-                  {series.find(s => s.id === selectedSeries)?.description}
-                </p>
-              </div>
-            </>
-          )}
-
-          {(viewMode === 'all' || viewMode === 'posts') && (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {sortedPosts.map((post) => (
-                <PostCard 
-                  key={post.file} 
-                  post={post} 
-                  fromSeries={viewMode === 'posts'}
-                />
-              ))}
-            </div>
-          )}
-
-          {viewMode === 'series' && (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {series.map((seriesItem) => (
-                <SeriesCard
-                  key={seriesItem.id}
-                  series={seriesItem}
-                  onClick={() => handleSeriesSelect(seriesItem.id)}
-                />
-              ))}
-            </div>
-          )}
-
-          {currentSeries && (
-            <h2 className="text-2xl font-bold mb-4">
-              {currentSeries.title}
-            </h2>
-          )}
+    <div className="py-16 sm:py-24">
+      <div className='mx-auto max-w-7xl px-6 lg:px-8'>
+        <div className="mb-8 flex gap-4">
+          <button
+            onClick={() => handleViewModeChange('all')}
+            className={`px-4 py-2 rounded-md ${
+              viewMode === 'all'
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-200 text-gray-700'
+            }`}
+          >
+            전체 포스트
+          </button>
+          <button
+            onClick={() => handleViewModeChange('series')}
+            className={`px-4 py-2 rounded-md ${
+              viewMode === 'series'
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-200 text-gray-700'
+            }`}
+          >
+            시리즈
+          </button>
         </div>
+
+        <PostFilters
+          categories={categories}
+          selectedCategory={selectedCategory}
+          tags={allTags}
+          selectedTag={selectedTag}
+          series={series}
+          selectedSeries={selectedSeries}
+          onCategoryChange={setSelectedCategory}
+          onTagChange={setSelectedTag}
+          onSeriesChange={handleSeriesSelect}
+        />
+        
+        {viewMode === 'posts' && selectedSeries && (
+          <>
+            <div className="mb-8">
+              <button 
+                onClick={handleBackToSeries}
+                className="text-blue-500 hover:text-blue-600 flex items-center gap-2"
+              >
+                ← 시리즈 목록으로 돌아가기
+              </button>
+            </div>
+            <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+              <h2 className="text-xl font-bold mb-2">
+                {series.find(s => s.id === selectedSeries)?.title}
+              </h2>
+              <p className="text-gray-600 dark:text-gray-300">
+                {series.find(s => s.id === selectedSeries)?.description}
+              </p>
+            </div>
+          </>
+        )}
+
+        {(viewMode === 'all' || viewMode === 'posts') && (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {sortedPosts.map((post) => (
+              <PostCard 
+                key={post.file} 
+                post={post} 
+                fromSeries={viewMode === 'posts'}
+              />
+            ))}
+          </div>
+        )}
+
+        {viewMode === 'series' && (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {series.map((seriesItem) => (
+              <SeriesCard
+                key={seriesItem.id}
+                series={seriesItem}
+                onClick={() => handleSeriesSelect(seriesItem.id)}
+              />
+            ))}
+          </div>
+        )}
+
+        {currentSeries && (
+          <h2 className="text-2xl font-bold mb-4">
+            {currentSeries.title}
+          </h2>
+        )}
       </div>
+    </div>
+  );
+}
+
+export function Posts(props: { 
+  posts: Post[],
+  series: Series[],
+  initialViewMode?: ViewMode,
+  currentSeriesId?: string
+}) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PostsContent 
+        {...props} 
+        initialViewMode={props.initialViewMode || 'all'}
+      />
     </Suspense>
   );
 }
