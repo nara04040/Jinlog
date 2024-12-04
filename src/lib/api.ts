@@ -5,6 +5,7 @@ import { remark } from 'remark';
 import html from 'remark-html';
 import { Post } from '../app/types/post';
 
+
 const postsDirectory = path.join(process.cwd(), 'src/data/posts');
 
 export async function getPosts(): Promise<Post[]> {
@@ -25,7 +26,13 @@ export async function getPosts(): Promise<Post[]> {
       date: data.date,
       author: data.author,
       content: contentHtml,
+      description: data.description || '',
+      category: data.category || '',
+      tags: data.tags || [],
+      imageUrl: data.imageUrl || '',
       file: fileName.replace(/\.md$/, ''),
+      slug: fileName.replace(/\.md$/, ''),
+      datetime: new Date(data.date).toISOString(),
     } as Post;
   }));
 

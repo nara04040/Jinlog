@@ -51,7 +51,7 @@ export async function getAllPosts(): Promise<Post[]> {
           }
         }
       } catch (error) {
-        console.error(`Invalid date format for ${filePath}:`, dateStr)
+        console.error(`Invalid date format for ${filePath}:`, dateStr, error)
       }
 
       const author: Author = {

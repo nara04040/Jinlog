@@ -10,6 +10,7 @@ import remarkRehype from 'remark-rehype'
 import rehypeHighlight from 'rehype-highlight'
 import rehypeStringify from 'rehype-stringify'
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 
 interface Props {
   post: Post
@@ -63,9 +64,11 @@ export function ClientBlogPost({ post, searchParams }: Props) {
               </h1>
               <div className="flex items-center justify-start gap-4 text-gray-600 dark:text-gray-400">
                 <div className="flex items-center gap-2">
-                  <img 
+                  <Image 
                     src={post.author.imageUrl} 
                     alt={post.author.name}
+                    width={500}
+                    height={300}
                     className="w-10 h-10 rounded-full"
                   />
                   <span>{post.author.name}</span>

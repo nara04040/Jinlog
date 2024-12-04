@@ -80,7 +80,7 @@ async function getPost(slug: string): Promise<Post | null> {
         }
       }
     } catch (error) {
-      console.error(`Invalid date format for ${filePath}:`, dateStr)
+      console.error(`Invalid date format for ${filePath}:`, dateStr, error)
     }
 
     return {
