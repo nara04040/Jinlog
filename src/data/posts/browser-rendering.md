@@ -222,7 +222,7 @@ JavaScript는 DOM과 CSSOM을 동적으로 수정할 수 있기 때문에, 브�
 
 1. **DOM 수정 가능성**
    - JavaScript는 `document.createElement()`, `element.appendChild()` 등으로 DOM을 수정할 수 있습니다.
-   - 파싱 중에 DOM이 수정되면 관��� 깨질 수 있습니다.
+   - 파싱 중에 DOM이 수정되면 구조가 깨질 수 있습니다.
 
 2. **실행 순서 보장**
    ```javascript

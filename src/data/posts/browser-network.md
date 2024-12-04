@@ -26,7 +26,7 @@ imageUrl: "/network-communication.svg"
    - Chrome의 경우 `chrome://net-internals/#dns`에서 확인 가능합니다.
 
 2. OS DNS 캐시 확인
-   - 브라우저 캐시에 없다면 운���체제의 DNS 캐시를 확인합니다.
+   - 브라우저 캐시에 없다면 운영체제의 DNS 캐시를 확인합니다.
    - Windows: `ipconfig /displaydns`
    - Linux/Mac: `nscd -g`
 
@@ -436,7 +436,7 @@ server.on('stream', (stream, headers) => {
 #### HTTP/3 (QUIC)
 - UDP 기반 전송
 - 향상된 멀티플렉싱
-- ��선된 오류 복구
+- 개선된 오류 복구
 
 > UDP란? 
 > UDP는 비연결형 프로토콜로, 데이터를 보내는 쪽에서 데이터를 받는 쪽에 대한 확인 없이 데이터를 전송합니다. 이는 데이터의 신뢰성이 낮아 데이터 손실이 발생할 수 있지만, 빠른 전송을 요구하는 애플리케이션에 적합합니다.

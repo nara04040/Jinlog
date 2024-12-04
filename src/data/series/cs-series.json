@@ -2,5 +2,44 @@
   "id": "cs-series",
   "title": "CS지식 완전 정복",
   "description": "CS 핵심 지식을 깊이있게 다루는 시리즈입니다.",
-  "order": 1
+  "order": 1,
+  "posts": [
+    {
+      "id": "cs-network",
+      "title": "네트워크 기본 개념",
+      "order": 1
+    },
+    {
+      "id": "cs-database",
+      "title": "데이터베이스 기본 개념",
+      "order": 2
+    },
+    {
+      "id": "cs-os",
+      "title": "OS(운영체제) 개념",
+      "order": 3
+    },
+    {
+      "id": "cs-data-structure",
+      "title": "자료구조와 알고리즘 기초",
+      "order": 4
+    },
+    {
+      "id": "cs-computer-architecture",
+      "title": "컴퓨터 구조의 이해",
+      "order": 5
+    },
+    {
+      "id": "cs-design-patterns",
+      "title": "디자인 패턴의 기초",
+      "order": 6
+    },
+    {
+      "id": "cs-security",
+      "title": "보안 기초와 암호화",
+      "order": 7
+    }
+  ]
 } 
+
+

@@ -143,7 +143,7 @@ class JWTManager {
       throw new Error('Invalid signature');
     }
     
-    // ��이로드 디코딩
+    // 페이로드 디코딩
     return JSON.parse(base64url.decode(payload));
   }
   

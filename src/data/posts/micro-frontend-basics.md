@@ -168,7 +168,7 @@ class MicroFrontendBus {
 // 사용 예시
 const bus = new MicroFrontendBus();
 
-// Team A의 구���
+// Team A의 구현
 bus.subscribe('cart:updated', (data) => {
   console.log('Cart updated:', data);
 });
