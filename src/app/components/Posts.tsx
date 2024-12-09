@@ -49,7 +49,7 @@ function PostFilters({
 
   return (
     <div className="mb-8 space-y-4">
-      <div className="flex gap-4 mb-4">
+      {/* <div className="flex gap-4 mb-4">
         <select 
           value={selectedCategory} 
           onChange={(e) => onCategoryChange(e.target.value)}
@@ -71,7 +71,7 @@ function PostFilters({
             <option key={s.id} value={s.id}>{s.title}</option>
           ))}
         </select>
-      </div>
+      </div> */}
       <div className="flex flex-wrap gap-2">
         {visibleTags.map(tag => (
           <button
