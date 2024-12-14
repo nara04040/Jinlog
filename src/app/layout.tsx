@@ -4,9 +4,9 @@ import 'prismjs/themes/prism-tomorrow.css';
 import 'highlight.js/styles/github-dark.css';
 import { ThemeProvider } from 'next-themes'
 
-const title = "test";
+const title = "JinAchieve";
 const description =
-  "blog test";
+  "공부하거나 일하면서 배운 것들을 기록하는 공간입니다.";
 
 export const metadata: Metadata = {
   title,
@@ -28,11 +28,11 @@ export const metadata: Metadata = {
     follow: true,
   },
   // pwa
-  applicationName: "JinLog",
+  applicationName: "JinAchieve",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "JinLog",
+    title: "JinAchieve",
   },
   formatDetection: {
     telephone: false,
@@ -55,7 +55,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="ko" suppressHydrationWarning>
       <body className="h-full">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
