@@ -24,15 +24,9 @@ type Post = {
 type ViewMode = 'all' | 'series' | 'posts';
 
 function PostFilters({ 
-  categories, 
-  selectedCategory, 
   tags, 
   selectedTag,
-  series,
-  selectedSeries,
-  onCategoryChange, 
   onTagChange,
-  onSeriesChange
 }: {
   categories: string[];
   selectedCategory: string;
