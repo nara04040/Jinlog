@@ -1,3 +1,13 @@
+---
+title: "[오늘의질문] 디바운스와 쓰로틀의 차이"
+date: "2024-11-10"
+author: "Jin"
+description: "디바운스와 쓰로틀을 기본 개념과 동작 원리를 이해합니다"
+category: "Programming"
+tags: ["JavaScript", "Async", "Promise"]
+imageUrl: "/javascript-codingtest.jpg"
+---
+
 # 디바운스와 쓰로틀에 대해서 각각 설명해주세요.
 
 디바운스(debounce)와 쓰로틀(throttle)은 이벤트 핸들러의 호출 빈도를 조절하는 데 사용되는 두 가지 기술입니다. 

@@ -1,3 +1,13 @@
+---
+title: "[오늘의질문] useEffect와 useLayoutEffect의 차이점"
+date: "2024-11-10"
+author: "Jin"
+description: "useEffect와useLayoutEffect차이점에 대해서 설명합니다."
+category: "React"
+tags: ["React"]
+imageUrl: "/javascript-codingtest.jpg"
+---
+
 # useEffect와 useLayoutEffect의 차이점에 대해서 설명해주세요.
 
 `useEffect`, `useLayooutEffect` 두 가지 모두 렌더링이 된 후에 작업을 수행하기 위해 사용되어집니다. 하지만 **실행되는 시점과 용도에서 차이점**이 존재합니다.

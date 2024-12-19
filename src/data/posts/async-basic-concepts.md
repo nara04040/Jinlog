@@ -1,6 +1,6 @@
 ---
 title: "비동기 프로그래밍 기초"
-date: "2024-03-20"
+date: "2024-06-20"
 author: "Jin"
 description: "JavaScript의 비동기 프로그래밍 기본 개념과 동작 원리를 이해합니다"
 category: "Programming"
