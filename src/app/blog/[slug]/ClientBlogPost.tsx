@@ -11,6 +11,7 @@ import rehypeHighlight from 'rehype-highlight'
 import rehypeStringify from 'rehype-stringify'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { Series } from '@/app/types/series'
 
 interface Props {
   post: Post
@@ -19,9 +20,10 @@ interface Props {
     view?: string
     series?: string
   }
+  series?: Series[]
 }
 
-export function ClientBlogPost({ post, searchParams }: Props) {
+export function ClientBlogPost({ post, searchParams, series }: Props) {
   const [contentHtml, setContentHtml] = useState('')
 
   useEffect(() => {
@@ -40,9 +42,15 @@ export function ClientBlogPost({ post, searchParams }: Props) {
     processContent()
   }, [post.content])
 
+  const currentSeries = series?.find(s => s.id === searchParams.series)
+
   const backUrl = searchParams.from === 'series' 
-    ? `/blog?view=series` 
+    ? `/blog?view=posts&series=${searchParams.series}` 
     : '/blog'
+
+  const backText = searchParams.from === 'series' && currentSeries
+    ? `'${currentSeries.title}' 시리즈 목록으로`
+    : '블로그로'
 
   return (
     <BlogLayout>
@@ -53,7 +61,7 @@ export function ClientBlogPost({ post, searchParams }: Props) {
               href={backUrl}
               className="text-blue-500 hover:text-blue-600 flex items-center gap-2"
             >
-              ← {searchParams.from === 'series' ? '시리즈 목록으로' : '블로그로'} 돌아가기
+              ← {backText} 돌아가기
             </Link>
           </div>
 

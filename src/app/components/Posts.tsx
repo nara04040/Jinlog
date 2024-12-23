@@ -160,16 +160,22 @@ function PostsContent({
 
   useEffect(() => {
     setMounted(true);
-    console.log(viewMode);
   }, []);
 
   useEffect(() => {
     if (mounted) {
       const view = searchParams.get('view');
+      const seriesId = searchParams.get('series');
+      
       if (view === 'series') {
         setViewMode('series');
-      } else if (view === 'posts') {
+        setSelectedSeries('');
+      } else if (view === 'posts' && seriesId) {
         setViewMode('posts');
+        setSelectedSeries(seriesId);
+      } else if (view === 'all') {
+        setViewMode('all');
+        setSelectedSeries('');
       }
     }
   }, [mounted, searchParams]);
@@ -181,22 +187,26 @@ function PostsContent({
   const categories = [...new Set(posts.map(post => post.category))];
   const allTags = [...new Set(posts.flatMap(post => post.tags))];
 
+  const handleBackToSeries = () => {
+    const currentSeriesId = searchParams.get('series');
+    setSelectedSeries('');
+    setViewMode('series');
+    
+    if (currentSeriesId) {
+      router.push('/blog?view=series');
+    }
+  };
+
   const handleSeriesSelect = (seriesId: string) => {
     if (seriesId === '') {
       setSelectedSeries('');
       setViewMode('all');
-      router.push('/blog');
+      router.push('/blog?view=all');
     } else {
       setSelectedSeries(seriesId);
       setViewMode('posts');
       router.push(`/blog?view=posts&series=${seriesId}`);
     }
-  };
-
-  const handleBackToSeries = () => {
-    setSelectedSeries('');
-    setViewMode('series');
-    router.push('/blog?view=series');
   };
 
   const handleViewModeChange = (mode: ViewMode) => {

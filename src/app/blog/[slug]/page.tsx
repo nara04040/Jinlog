@@ -5,6 +5,7 @@ import { Post } from '@/app/types/post'
 import { getAllPosts } from '@/app/utils/mdx'
 import { Metadata } from 'next'
 import { ClientBlogPost } from './ClientBlogPost'
+import { getSeries } from '@/app/utils/series'
 
 // 파일을 찾는 함수 수정
 async function findMarkdownFile(slug: string): Promise<string | null> {
@@ -121,11 +122,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPost({ params, searchParams }: Props) {
   const post = await getPost(params.slug)
-  
+  const series = await getSeries()
+
   if (!post) {
     console.error(`Post not found for slug: ${params.slug}`)
     return <div>Post not found</div>
   }
 
-  return <ClientBlogPost post={post} searchParams={searchParams} />
+  return <ClientBlogPost post={post} searchParams={searchParams} series={series} />
 }
