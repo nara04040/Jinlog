@@ -222,6 +222,8 @@ function PostsContent({
     ? [...filteredPosts].sort((a, b) => (a.seriesOrder || 0) - (b.seriesOrder || 0))
     : filteredPosts;
 
+  const sortedSeries = series.sort((a,b) => (a.order || 0) - (b.order || 0));
+
   const currentSeries = currentSeriesId 
     ? series.find(s => s.id === currentSeriesId)
     : null;
@@ -302,7 +304,7 @@ function PostsContent({
 
         {viewMode === 'series' && (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {series.map((seriesItem) => (
+            {sortedSeries.map((seriesItem) => (
               <SeriesCard
                 key={seriesItem.id}
                 series={seriesItem}

@@ -1,8 +1,7 @@
 {
   "id": "cs-series",
-  "title": "CS지식 완전 정복",
+  "title": "9. CS지식 완전 정복",
   "description": "CS 핵심 지식을 깊이있게 다루는 시리즈입니다.",
-  "order": 1,
   "posts": [
     {
       "id": "cs-network",
@@ -39,7 +38,8 @@
       "title": "보안 기초와 암호화",
       "order": 7
     }
-  ]
+  ],
+  "order": 9
 } 
 
 

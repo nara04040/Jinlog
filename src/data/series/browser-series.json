@@ -1,5 +1,23 @@
 {
   "id": "browser-series",
   "title": "2. 브라우저 동작원리 시리즈",
-  "description": "브라우저의 동작 원리를 상세히 설명하는 시리즈입니다."
+  "description": "브라우저의 동작 원리를 상세히 설명하는 시리즈입니다.",
+  "posts": [
+    {
+      "id": "browser-series-1",
+      "title": "브라우저 동작원리",
+      "order": 1
+    },
+    {
+      "id": "browser-series-2",
+      "title": "브라우저 동작원리",
+      "order": 2
+    },
+    {
+      "id": "browser-series-3",
+      "title": "브라우저 동작원리",
+      "order": 3
+    }
+  ],
+  "order": 2
 } 

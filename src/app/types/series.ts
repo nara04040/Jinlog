@@ -7,6 +7,7 @@ export interface Series {
     title: string;
     // 필요한 다른 포스트 관련 필드들...
   }[];
+  order: number
 }
 
 export interface SeriesPost {
