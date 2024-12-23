@@ -7,7 +7,7 @@ category: "Browser"
 tags: ["Browser", "Network", "Performance", "HTTP", "WebSocket"]
 series: "browser-series"
 seriesOrder: 3
-imageUrl: "/network-communication.svg"
+imageUrl: "/network.webp"
 ---
 
 # 브라우저의 네트워크 통신

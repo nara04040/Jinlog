@@ -4,13 +4,34 @@ import 'prismjs/themes/prism-tomorrow.css';
 import 'highlight.js/styles/github-dark.css';
 import { ThemeProvider } from 'next-themes'
 
-const title = "JinAchieve";
+const title = "JinArchive";
 const description =
   "공부하거나 일하면서 배운 것들을 기록하는 공간입니다.";
 
 export const metadata: Metadata = {
   title,
   description,
+  icons: {
+    icon: [
+      {
+        url: '/favicon-16x16.png',
+        sizes: '16x16',
+        type: 'image/png',
+      },
+      {
+        url: '/android-icon-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+    ],
+    apple: [
+      {
+        url: '/apple-icon-180x180.png',
+        sizes: '180x180',
+        type: 'image/png',
+      },
+    ],
+  },
   openGraph: {
     title,
     description,

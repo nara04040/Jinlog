@@ -43,29 +43,6 @@ function PostFilters({
 
   return (
     <div className="mb-8 space-y-4">
-      {/* <div className="flex gap-4 mb-4">
-        <select 
-          value={selectedCategory} 
-          onChange={(e) => onCategoryChange(e.target.value)}
-          className="border rounded-md px-3 py-2"
-        >
-          <option value="">모든 카테고리</option>
-          {categories.map(category => (
-            <option key={category} value={category}>{category}</option>
-          ))}
-        </select>
-
-        <select
-          value={selectedSeries}
-          onChange={(e) => onSeriesChange(e.target.value)}
-          className="border rounded-md px-3 py-2"
-        >
-          <option value="">시리즈물로 보기</option>
-          {series.map(s => (
-            <option key={s.id} value={s.id}>{s.title}</option>
-          ))}
-        </select>
-      </div> */}
       <div className="flex flex-wrap gap-2">
         {visibleTags.map(tag => (
           <button
@@ -254,16 +231,6 @@ function PostsContent({
       <div className='mx-auto max-w-7xl px-6 lg:px-8'>
         <div className="mb-8 flex gap-4">
           <button
-            onClick={() => handleViewModeChange('all')}
-            className={`px-4 py-2 rounded-md ${
-              viewMode === 'all'
-                ? 'bg-blue-500 text-white'
-                : 'bg-gray-200 text-gray-700'
-            }`}
-          >
-            전체 포스트
-          </button>
-          <button
             onClick={() => handleViewModeChange('series')}
             className={`px-4 py-2 rounded-md ${
               viewMode === 'series'
@@ -272,6 +239,16 @@ function PostsContent({
             }`}
           >
             시리즈
+          </button>
+          <button
+            onClick={() => handleViewModeChange('all')}
+            className={`px-4 py-2 rounded-md ${
+              viewMode === 'all'
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-200 text-gray-700'
+            }`}
+          >
+            전체 포스트
           </button>
         </div>
 
