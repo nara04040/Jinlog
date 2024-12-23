@@ -1,0 +1,23 @@
+{
+  "id": "technical-questions",
+  "title": "1. 스스로에게 하는 기술 질문",
+  "description": "나는 개발자인가를 스스로 매일매일 물어봅니다.",
+  "posts": [
+    {
+      "id": "technical-questions-1",
+      "title": "디바운스와 쓰로틀의 차이",
+      "order": 1
+    },
+    {
+      "id": "technical-questions-2",
+      "title": "이벤트 버블링과 캡처링",
+      "order": 2
+    },
+    {
+      "id": "technical-questions-3",
+      "title": "useEffect, useLayoutEffect의 차이점",
+      "order": 3
+    }
+  ],
+  "order": 1
+} 

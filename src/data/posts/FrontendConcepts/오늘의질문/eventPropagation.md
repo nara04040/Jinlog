@@ -4,6 +4,8 @@ date: "2024-12-05"
 author: "Jin"
 category: "Development"
 tags: ["JavaScript", "Event"]
+series: "technical-questions"
+seriesOrder: 2
 description: "이벤트 전파에 대해서 간단하게 설명합니다."
 imageUrl: "/eventPropagation.png"
 ---

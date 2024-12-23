@@ -5,6 +5,8 @@ author: "Jin"
 description: "디바운스와 쓰로틀을 기본 개념과 동작 원리를 이해합니다"
 category: "Programming"
 tags: ["JavaScript", "Async", "Promise"]
+series: "technical-questions"
+seriesOrder: 1
 imageUrl: "/javascript-codingtest.jpg"
 ---
 

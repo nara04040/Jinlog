@@ -5,17 +5,17 @@
   "posts": [
     {
       "id": "browser-series-1",
-      "title": "브라우저 동작원리",
+      "title": "브라우저 렌더링 과정 심층 분석",
       "order": 1
     },
     {
       "id": "browser-series-2",
-      "title": "브라우저 동작원리",
+      "title": "자바스크립트 엔진과 실행 컨텍스트 이해하기",
       "order": 2
     },
     {
       "id": "browser-series-3",
-      "title": "브라우저 동작원리",
+      "title": "브라우저 네트워크 통신",
       "order": 3
     }
   ],

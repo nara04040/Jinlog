@@ -5,6 +5,8 @@ author: "Jin"
 description: "useEffect와useLayoutEffect차이점에 대해서 설명합니다."
 category: "React"
 tags: ["React"]
+series: "technical-questions"
+seriesOrder: 3
 imageUrl: "/javascript-codingtest.jpg"
 ---
 
