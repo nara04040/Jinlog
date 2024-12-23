@@ -7,7 +7,7 @@ category: "Infrastructure"
 tags: ["Docker", "Container", "DevOps"]
 series: "infra-series"
 seriesOrder: 1
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 컨테이너와 도커

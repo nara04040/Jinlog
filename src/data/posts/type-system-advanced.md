@@ -7,7 +7,7 @@ category: "Programming"
 tags: ["Type System", "Generic", "Advanced Types"]
 series: "type-system-series"
 seriesOrder: 2
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 고급 타입 시스템 기능
@@ -27,11 +27,11 @@ interface Box<T> {
 // 제네릭 클래스
 class Container<T> {
   private value: T;
-  
+
   constructor(value: T) {
     this.value = value;
   }
-  
+
   getValue(): T {
     return this.value;
   }
@@ -57,7 +57,7 @@ interface Lengthwise {
 }
 
 function loggingIdentity<T extends Lengthwise>(arg: T): T {
-  console.log(arg.length);  // OK: T는 length 속성을 가짐
+  console.log(arg.length); // OK: T는 length 속성을 가짐
   return arg;
 }
 
@@ -104,13 +104,7 @@ type ArtworksResponse = ErrorHandling & ArtworksData;
 
 ```typescript
 // 기본 조건부 타입
-type TypeName<T> = 
-  T extends string ? "string" :
-  T extends number ? "number" :
-  T extends boolean ? "boolean" :
-  T extends undefined ? "undefined" :
-  T extends Function ? "function" :
-  "object";
+type TypeName<T> = T extends string ? "string" : T extends number ? "number" : T extends boolean ? "boolean" : T extends undefined ? "undefined" : T extends Function ? "function" : "object";
 
 // infer 키워드 사용
 type ReturnType<T> = T extends (...args: any[]) => infer R ? R : any;
@@ -153,12 +147,12 @@ type Record<K extends keyof any, T> = {
 type NonNullable<T> = T extends null | undefined ? never : T;
 
 type RequiredKeys<T> = {
-  [K in keyof T]: T[K] extends Required<T>[K] ? K : never
+  [K in keyof T]: T[K] extends Required<T>[K] ? K : never;
 }[keyof T];
 
 // 템플릿 리터럴 타입과 매핑
 type Getters<T> = {
-  [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K]
+  [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K];
 };
 
 interface Person {
@@ -192,7 +186,7 @@ type PersonKeys = keyof Person; // "name" | "age" | "location"
 const colors = {
   red: "RED",
   blue: "BLUE",
-  green: "GREEN"
+  green: "GREEN",
 } as const;
 
 type Colors = typeof colors;
@@ -216,14 +210,7 @@ type SuccessResponse = ResponseMessages["success"];
 type MessageType = ResponseMessages[keyof ResponseMessages]["message"];
 
 // 조건부 접근
-type PropType<T, Path extends string> = 
-  Path extends keyof T 
-    ? T[Path]
-    : Path extends `${infer K}.${infer R}`
-      ? K extends keyof T
-        ? PropType<T[K], R>
-        : never
-      : never;
+type PropType<T, Path extends string> = Path extends keyof T ? T[Path] : Path extends `${infer K}.${infer R}` ? (K extends keyof T ? PropType<T[K], R> : never) : never;
 ```
 
-다음 포스트에서는 TypeScript의 타입 시스템에 대해 자세히 알아보겠습니다. 
+다음 포스트에서는 TypeScript의 타입 시스템에 대해 자세히 알아보겠습니다.

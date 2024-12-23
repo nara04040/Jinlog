@@ -5,6 +5,7 @@ author: "Jin"
 category: "Development"
 tags: ["Focus", "MVP", "Product"]
 description: "Perfect Focusing 1차 MVP 리뷰"
+imageUrl: "/placeholder.webp"
 ---
 
 # Perfect Focusing - 집중을 위한 TODO 리스트 프로젝트 1차 MVP 리뷰

@@ -7,7 +7,8 @@ category: "Programming"
 tags: ["JavaScript", "아키텍처", "프론트엔드"]
 series: "js-patterns-series"
 seriesOrder: 2
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
+
 ---
 
 # 프론트엔드 아키텍처 패턴

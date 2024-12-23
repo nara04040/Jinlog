@@ -7,7 +7,7 @@ category: "Network"
 tags: ["HTTP", "Web", "Headers"]
 series: "http-series"
 seriesOrder: 2
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # HTTP 헤더와 메서드

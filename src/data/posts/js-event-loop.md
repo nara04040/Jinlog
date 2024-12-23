@@ -7,7 +7,8 @@ category: "JavaScript"
 tags: ["Event Loop", "Async", "JavaScript Runtime"]
 series: "js-core-series"
 seriesOrder: 3
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
+
 ---
 
 # 이벤트 루프와 비동기 처리

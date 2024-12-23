@@ -7,7 +7,7 @@ category: "Programming"
 tags: ["JavaScript", "모노레포", "개발환경"]
 series: "js-patterns-series"
 seriesOrder: 3
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 모노레포 구축과 관리

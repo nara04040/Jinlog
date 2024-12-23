@@ -7,7 +7,7 @@ category: "Infrastructure"
 tags: ["DevOps", "CI/CD", "Automation"]
 series: "infra-series"
 seriesOrder: 3
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # DevOps와 CI/CD 파이프라인

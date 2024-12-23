@@ -7,7 +7,7 @@ category: "Web Development"
 tags: ["SSR", "CSR", "ISR", "SSG", "Next.js"]
 series: "web-rendering-series"
 seriesOrder: 1
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 웹 렌더링의 모든 것: SSR, CSR, ISR, SSG 완벽 이해
@@ -39,7 +39,7 @@ function App() {
   }, []);
 
   if (!data) return <Loading />;
-  
+
   return <MainContent data={data} />;
 }
 ```
@@ -51,11 +51,11 @@ function App() {
 export async function getServerSideProps(context) {
   // 매 요청마다 서버에서 데이터 로드
   const data = await fetchData();
-  
+
   return {
     props: {
-      data
-    }
+      data,
+    },
   };
 }
 
@@ -71,11 +71,11 @@ function Page({ data }) {
 export async function getStaticProps() {
   // 빌드 시점에 데이터 로드
   const data = await fetchData();
-  
+
   return {
     props: {
-      data
-    }
+      data,
+    },
   };
 }
 
@@ -90,36 +90,37 @@ function Page({ data }) {
 // Next.js ISR 예시
 export async function getStaticProps() {
   const data = await fetchData();
-  
+
   return {
     props: {
-      data
+      data,
     },
-    revalidate: 60 // 60초마다 페이지 재생성
+    revalidate: 60, // 60초마다 페이지 재생성
   };
 }
 ```
 
 ## 3. 렌더링 방식 비교표
 
-| 특징 | CSR | SSR | SSG | ISR |
-|------|-----|-----|-----|-----|
-| 초기 로딩 | 느림 | 빠름 | 매우 빠름 | 빠름 |
-| SEO | 취약 | 우수 | 우수 | 우수 |
-| 서버 부하 | 낮음 | 높음 | 매우 낮음 | 중간 |
-| 데이터 실시간성 | 우수 | 우수 | 제한적 | 중간 |
-| 개발 복잡도 | 낮음 | 높음 | 낮음 | 중간 |
+| 특징            | CSR  | SSR  | SSG       | ISR  |
+| --------------- | ---- | ---- | --------- | ---- |
+| 초기 로딩       | 느림 | 빠름 | 매우 빠름 | 빠름 |
+| SEO             | 취약 | 우수 | 우수      | 우수 |
+| 서버 부하       | 낮음 | 높음 | 매우 낮음 | 중간 |
+| 데이터 실시간성 | 우수 | 우수 | 제한적    | 중간 |
+| 개발 복잡도     | 낮음 | 높음 | 낮음      | 중간 |
 
 ## 4. 적절한 렌더링 방식 선택하기
 
 ### 4.1 CSR이 적합한 경우
+
 - 대시보드, 관리자 페이지
 - 사용자 인터랙션이 많은 웹 앱
 - SEO가 중요하지 않은 서비스
 
 ```javascript
 // CSR 최적화 예시
-const Dashboard = lazy(() => import('./Dashboard'));
+const Dashboard = lazy(() => import("./Dashboard"));
 
 function App() {
   return (
@@ -131,6 +132,7 @@ function App() {
 ```
 
 ### 4.2 SSR이 적합한 경우
+
 - 소셜 미디어 플랫폼
 - 실시간 데이터가 중요한 서비스
 - SEO가 중요한 동적 컨텐츠
@@ -138,19 +140,17 @@ function App() {
 ```typescript
 // Next.js Dynamic SSR
 export async function getServerSideProps({ req, res }) {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  );
+  res.setHeader("Cache-Control", "public, s-maxage=10, stale-while-revalidate=59");
 
   const data = await fetchData();
   return {
-    props: { data }
+    props: { data },
   };
 }
 ```
 
 ### 4.3 SSG가 적합한 경우
+
 - 블로그, 문서
 - 마케팅 페이지
 - 변경이 적은 정적 컨텐츠
@@ -159,17 +159,18 @@ export async function getServerSideProps({ req, res }) {
 // Next.js SSG with Dynamic Routes
 export async function getStaticPaths() {
   const posts = await getAllPosts();
-  
+
   return {
-    paths: posts.map(post => ({
-      params: { id: post.id }
+    paths: posts.map((post) => ({
+      params: { id: post.id },
     })),
-    fallback: false
+    fallback: false,
   };
 }
 ```
 
 ### 4.4 ISR이 적합한 경우
+
 - E-commerce 제품 페이지
 - 주기적으로 업데이트되는 컨텐츠
 - 트래픽이 많은 동적 페이지
@@ -178,12 +179,12 @@ export async function getStaticPaths() {
 // Next.js ISR with On-demand Revalidation
 export async function getStaticProps({ params }) {
   const product = await getProduct(params.id);
-  
+
   return {
     props: {
-      product
+      product,
     },
-    revalidate: 60 * 60 // 1시간마다 재생성
+    revalidate: 60 * 60, // 1시간마다 재생성
   };
 }
 ```
@@ -198,8 +199,8 @@ export async function getStaticProps({ params }) {
 export async function getStaticProps() {
   return {
     props: {
-      staticData: await fetchStaticData()
-    }
+      staticData: await fetchStaticData(),
+    },
   };
 }
 
@@ -207,9 +208,9 @@ export async function getStaticProps() {
 export async function getStaticProps({ params }) {
   return {
     props: {
-      product: await fetchProduct(params.id)
+      product: await fetchProduct(params.id),
     },
-    revalidate: 60
+    revalidate: 60,
   };
 }
 
@@ -217,8 +218,8 @@ export async function getStaticProps({ params }) {
 export async function getServerSideProps({ req }) {
   return {
     props: {
-      user: await fetchUser(req.cookies.token)
-    }
+      user: await fetchUser(req.cookies.token),
+    },
   };
 }
 ```
@@ -231,28 +232,28 @@ export async function getServerSideProps({ req }) {
 // 웹 바이탈 측정
 export function reportWebVitals(metric) {
   switch (metric.name) {
-    case 'FCP':
+    case "FCP":
       // First Contentful Paint
-      console.log('FCP:', metric.value);
+      console.log("FCP:", metric.value);
       break;
-    case 'LCP':
+    case "LCP":
       // Largest Contentful Paint
-      console.log('LCP:', metric.value);
+      console.log("LCP:", metric.value);
       break;
-    case 'CLS':
+    case "CLS":
       // Cumulative Layout Shift
-      console.log('CLS:', metric.value);
+      console.log("CLS:", metric.value);
       break;
-    case 'FID':
+    case "FID":
       // First Input Delay
-      console.log('FID:', metric.value);
+      console.log("FID:", metric.value);
       break;
-    case 'TTFB':
+    case "TTFB":
       // Time to First Byte
-      console.log('TTFB:', metric.value);
+      console.log("TTFB:", metric.value);
       break;
   }
 }
 ```
 
-다음 포스트에서는 SSR의 작동 원리와 최적화 전략에 대해 더 자세히 알아보겠습니다. 
+다음 포스트에서는 SSR의 작동 원리와 최적화 전략에 대해 더 자세히 알아보겠습니다.

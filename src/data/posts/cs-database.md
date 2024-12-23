@@ -7,7 +7,7 @@ category: "Computer Science"
 tags: ["Database", "CS", "SQL", "RDBMS", "NoSQL"]
 series: "cs-series"
 seriesOrder: 3
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 ## 데이터베이스란 무엇인가?

@@ -7,7 +7,7 @@ category: "Programming"
 tags: ["OOP", "Java", "객체지향"]
 series: "oop-series"
 seriesOrder: 1
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 객체지향의 기본 개념
@@ -16,7 +16,7 @@ imageUrl: "/next.svg"
 
 ## 1. 캡슐화 (Encapsulation)
 
-캡슐화는 데이터와 해당 데이터를 처리하는 메서드를 하나의 단위로 묶는 것을 의미합니다. 
+캡슐화는 데이터와 해당 데이터를 처리하는 메서드를 하나의 단위로 묶는 것을 의미합니다.
 
 ```java
 java
@@ -35,7 +35,6 @@ balance -= amount;
 }
 ```
 
-
 ## 2. 상속 (Inheritance)
 
 상속은 기존 클래스의 특성을 다른 클래스가 재사용할 수 있게 해줍니다.
@@ -48,7 +47,6 @@ double interest = getBalance() interestRate;
 deposit(interest);
 }
 ```
-
 
 ## 3. 다형성 (Polymorphism)
 
@@ -73,8 +71,6 @@ return width height;
 }
 }
 ```
-
-
 
 ## 4. 추상화 (Abstraction)
 

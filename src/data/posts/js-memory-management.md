@@ -7,7 +7,7 @@ category: "JavaScript"
 tags: ["V8", "Memory Management", "Garbage Collection"]
 series: "js-core-series"
 seriesOrder: 2
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # JavaScript 메모리 관리와 가비지 컬렉션

@@ -7,7 +7,7 @@ category: "Operating System"
 tags: ["OS", "Memory", "Virtual Memory"]
 series: "os-series"
 seriesOrder: 2
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 메모리 관리와 가상 메모리
@@ -56,7 +56,7 @@ void* first_fit_allocate(size_t size) {
 void compact_memory() {
     MemoryBlock* current = head;
     void* free_space = NULL;
-    
+
     while (current != NULL) {
         if (current->is_free) {
             if (free_space == NULL) {
@@ -92,18 +92,18 @@ struct PageTableEntry {
 // 페이지 폴트 핸들러
 void page_fault_handler(void* fault_address) {
     PageTableEntry* pte = get_page_table_entry(fault_address);
-    
+
     if (!pte->present) {
         // 1. 빈 프레임 찾기
         uint32_t frame = allocate_frame();
-        
+
         // 2. 디스크에서 페이지 로드
         load_page_from_disk(fault_address, frame);
-        
+
         // 3. 페이지 테이블 업데이트
         pte->frame = frame;
         pte->present = 1;
-        
+
         // 4. TLB 갱신
         flush_tlb_entry(fault_address);
     }
@@ -119,23 +119,23 @@ class LRUCache {
         int number;
         time_t last_used;
     };
-    
+
     vector<Page> pages;
     size_t capacity;
-    
+
 public:
     bool access_page(int page_number) {
         auto it = find_if(pages.begin(), pages.end(),
             [page_number](const Page& p) {
                 return p.number == page_number;
             });
-            
+
         if (it != pages.end()) {
             // 페이지가 캐시에 있음
             it->last_used = time(NULL);
             return true;
         }
-        
+
         // 페이지 폴트 발생
         if (pages.size() >= capacity) {
             // 가장 오래된 페이지 찾아 교체
@@ -166,16 +166,16 @@ struct MemoryProtectionKey {
 // 메모리 접근 권한 검사
 bool check_memory_access(void* address, uint32_t access_type) {
     MemoryProtectionKey* key = get_protection_key(address);
-    
+
     if (key == NULL) {
         return false;  // 보호 키가 없음
     }
-    
+
     // 현재 프로세스의 권한 확인
     if ((key->permissions & access_type) == 0) {
         return false;  // 접근 권한 없음
     }
-    
+
     return true;
 }
 
@@ -188,14 +188,14 @@ struct Segment {
 
 bool check_segment_access(uint32_t segment_selector, uint32_t offset) {
     Segment* segment = get_segment(segment_selector);
-    
+
     if (offset > segment->limit) {
         return false;  // 세그먼트 범위 초과
     }
-    
+
     return check_memory_access((void*)(segment->base + offset),
                              segment->permissions);
 }
 ```
 
-다음 포스트에서는 파일 시스템과 입출력에 대해 알아보겠습니다. 
+다음 포스트에서는 파일 시스템과 입출력에 대해 알아보겠습니다.

@@ -7,7 +7,7 @@ category: "JavaScript"
 tags: ["V8", "JavaScript Engine", "Chrome"]
 series: "js-core-series"
 seriesOrder: 1
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # V8 엔진의 구조와 원리
@@ -17,6 +17,7 @@ V8은 Google에서 개발한 고성능 JavaScript 엔진으로, Chrome 브라우
 ## 1. V8 엔진의 주요 컴포넌트
 
 ### Parser (파서)
+
 JavaScript 코드를 AST(Abstract Syntax Tree)로 변환합니다.
 
 ```javascript
@@ -49,6 +50,7 @@ function add(a, b) {
 ```
 
 ### Ignition (인터프리터)
+
 AST를 바이트코드로 변환하고 실행합니다.
 
 ```javascript
@@ -75,7 +77,7 @@ Return                 // 결과 반환
 // 최적화 대상이 되는 hot code 예시
 function criticalLoop() {
   let sum = 0;
-  for(let i = 0; i < 1000000; i++) {
+  for (let i = 0; i < 1000000; i++) {
     sum += i;
   }
   return sum;
@@ -101,19 +103,19 @@ class Point {
 }
 
 const p1 = new Point(1, 2);
-p1.z = 3;  // 새로운 히든 클래스 생성
+p1.z = 3; // 새로운 히든 클래스 생성
 
 // 효율적인 코드
 class Point {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.z = undefined;  // 미리 속성 선언
+    this.z = undefined; // 미리 속성 선언
   }
 }
 
 const p1 = new Point(1, 2);
-p1.z = 3;  // 기존 히든 클래스 유지
+p1.z = 3; // 기존 히든 클래스 유지
 ```
 
 ## 4. Inline Caching (IC)
@@ -125,17 +127,17 @@ class Example {
   constructor(value) {
     this.value = value;
   }
-  
+
   getValue() {
-    return this.value;  // 이 접근이 최적화됨
+    return this.value; // 이 접근이 최적화됨
   }
 }
 
 const example = new Example(42);
 // 반복적인 getValue() 호출은 IC를 통해 최적화됨
-for(let i = 0; i < 100000; i++) {
+for (let i = 0; i < 100000; i++) {
   example.getValue();
 }
 ```
 
-다음 포스트에서는 JavaScript의 메모리 관리와 가비지 컬렉션에 대해 알아보겠습니다. 
+다음 포스트에서는 JavaScript의 메모리 관리와 가비지 컬렉션에 대해 알아보겠습니다.

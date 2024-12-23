@@ -7,7 +7,7 @@ category: "Programming"
 tags: ["OOP", "디자인패턴", "설계"]
 series: "oop-series"
 seriesOrder: 3
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 디자인 패턴 활용하기
@@ -16,7 +16,7 @@ imageUrl: "/next.svg"
 
 ## 1. 생성 패턴 (Creational Patterns)
 
-### 싱글톤 패턴 (Singleton) 
+### 싱글톤 패턴 (Singleton)
 
 ```java
 public class Singleton {
@@ -30,7 +30,6 @@ return instance;
 }
 }
 ```
-
 
 ### 팩토리 메서드 패턴 (Factory Method)
 
@@ -60,7 +59,6 @@ return null;
 }
 ```
 
-
 ## 2. 구조 패턴 (Structural Patterns)
 
 ### 어댑터 패턴 (Adapter)
@@ -86,7 +84,6 @@ mp4Player.playVideo(filename);
 }
 }
 ```
-
 
 ## 3. 행위 패턴 (Behavioral Patterns)
 

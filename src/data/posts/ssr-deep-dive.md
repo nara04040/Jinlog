@@ -7,7 +7,7 @@ category: "Web Development"
 tags: ["SSR", "Next.js", "Performance", "React"]
 series: "web-rendering-series"
 seriesOrder: 2
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # SSR 심층 분석: 서버 사이드 렌더링의 모든 것
@@ -41,27 +41,22 @@ const ServerComponent = () => {
 };
 
 // 클라이언트 사이드 Hydration
-import { hydrateRoot } from 'react-dom/client';
+import { hydrateRoot } from "react-dom/client";
 
 const ClientComponent = () => {
   const [count, setCount] = useState(0);
-  
+
   return (
     <div id="root">
       <h1>서버에서 렌더링된 내용</h1>
       <p>이 내용은 초기 HTML에 포함됩니다.</p>
-      <button onClick={() => setCount(count + 1)}>
-        클릭: {count}
-      </button>
+      <button onClick={() => setCount(count + 1)}>클릭: {count}</button>
     </div>
   );
 };
 
 // Hydration 수행
-hydrateRoot(
-  document.getElementById('root'),
-  <ClientComponent />
-);
+hydrateRoot(document.getElementById("root"), <ClientComponent />);
 ```
 
 ## 2. Next.js의 SSR 구현
@@ -70,12 +65,9 @@ hydrateRoot(
 
 ```typescript
 // pages/api/data.ts
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const data = await fetchData();
   res.status(200).json(data);
 }
@@ -84,12 +76,12 @@ export default async function handler(
 export async function getServerSideProps() {
   // API 라우트 대신 직접 데이터 fetch
   const data = await fetchData();
-  
+
   return {
     props: {
       data,
       generatedAt: new Date().toISOString(),
-    }
+    },
   };
 }
 ```
@@ -98,7 +90,7 @@ export async function getServerSideProps() {
 
 ```typescript
 // app/page.tsx
-import { Suspense } from 'react';
+import { Suspense } from "react";
 
 async function SlowComponent() {
   const data = await fetchSlowData();
@@ -124,13 +116,10 @@ export default function Page() {
 ```typescript
 // 캐시 제어
 export async function getServerSideProps({ req, res }) {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  );
-  
+  res.setHeader("Cache-Control", "public, s-maxage=10, stale-while-revalidate=59");
+
   const data = await fetchData();
-  
+
   return {
     props: {
       data,
@@ -146,7 +135,7 @@ async function fetchWithCache(key: string) {
   if (cache.has(key)) {
     return cache.get(key);
   }
-  
+
   const data = await fetchData(key);
   cache.set(key, data);
   return data;
@@ -159,9 +148,9 @@ async function fetchWithCache(key: string) {
 // 조건부 SSR
 export async function getServerSideProps({ req }) {
   // 봇 감지
-  const userAgent = req.headers['user-agent'] || '';
+  const userAgent = req.headers["user-agent"] || "";
   const isBot = /bot|crawler|spider|googlebot/i.test(userAgent);
-  
+
   if (!isBot) {
     // 일반 사용자는 CSR로 처리
     return {
@@ -170,7 +159,7 @@ export async function getServerSideProps({ req }) {
       },
     };
   }
-  
+
   // 봇에게는 완전한 SSR 제공
   const data = await fetchData();
   return {
@@ -187,22 +176,22 @@ export async function getServerSideProps({ req }) {
 
 ```typescript
 // 동적 임포트
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const HeavyComponent = dynamic(() => import('./HeavyComponent'), {
+const HeavyComponent = dynamic(() => import("./HeavyComponent"), {
   loading: () => <p>Loading...</p>,
   ssr: false, // 클라이언트 사이드에서만 로드
 });
 
 // 모듈 프리로딩
-const PreloadedComponent = dynamic(() => import('./PreloadedComponent'), {
+const PreloadedComponent = dynamic(() => import("./PreloadedComponent"), {
   loading: () => <p>Loading...</p>,
   ssr: true,
 });
 
 // 컴포넌트가 필요하기 전에 미리 로드
 const preloadComponent = () => {
-  const componentPromise = import('./PreloadedComponent');
+  const componentPromise = import("./PreloadedComponent");
   return componentPromise;
 };
 ```
@@ -213,14 +202,10 @@ const preloadComponent = () => {
 // 데이터 프리페칭 구현
 export async function getServerSideProps({ req }) {
   const session = await getSession(req);
-  
+
   // 병렬로 데이터 fetch
-  const [userData, postsData, settingsData] = await Promise.all([
-    fetchUserData(session.userId),
-    fetchUserPosts(session.userId),
-    fetchUserSettings(session.userId),
-  ]);
-  
+  const [userData, postsData, settingsData] = await Promise.all([fetchUserData(session.userId), fetchUserPosts(session.userId), fetchUserSettings(session.userId)]);
+
   return {
     props: {
       user: userData,
@@ -235,22 +220,22 @@ export async function getServerSideProps({ req }) {
 
 ```typescript
 // 서버 사이드 렌더링 성능 모니터링
-import { performance } from 'perf_hooks';
+import { performance } from "perf_hooks";
 
 export async function getServerSideProps({ req }) {
   const start = performance.now();
-  
+
   try {
     const data = await fetchData();
-    
+
     const duration = performance.now() - start;
     console.log(`SSR took ${duration}ms`);
-    
+
     return {
       props: { data },
     };
   } catch (error) {
-    console.error('SSR Error:', error);
+    console.error("SSR Error:", error);
     return {
       props: { error: error.message },
     };
@@ -258,4 +243,4 @@ export async function getServerSideProps({ req }) {
 }
 ```
 
-다음 포스트에서는 CSR 최적화 전략에 대해 알아보겠습니다. 
+다음 포스트에서는 CSR 최적화 전략에 대해 알아보겠습니다.

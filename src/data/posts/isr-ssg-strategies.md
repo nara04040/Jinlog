@@ -7,7 +7,7 @@ category: "Web Development"
 tags: ["SSG", "ISR", "Next.js", "JAMstack"]
 series: "web-rendering-series"
 seriesOrder: 4
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # ISR과 SSG: 정적 생성 전략과 증분 정적 재생성

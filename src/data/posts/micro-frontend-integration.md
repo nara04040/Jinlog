@@ -7,7 +7,7 @@ category: "Frontend"
 tags: ["Micro Frontend", "Integration", "Module Federation"]
 series: "micro-frontend-series"
 seriesOrder: 2
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 마이크로 프론트엔드 통합 전략
@@ -20,33 +20,33 @@ imageUrl: "/next.svg"
 
 ```javascript
 // webpack.config.js (Container)
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 module.exports = {
   plugins: [
     new ModuleFederationPlugin({
-      name: 'container',
+      name: "container",
       remotes: {
-        teamA: 'teamA@http://localhost:3001/remoteEntry.js',
-        teamB: 'teamB@http://localhost:3002/remoteEntry.js'
+        teamA: "teamA@http://localhost:3001/remoteEntry.js",
+        teamB: "teamB@http://localhost:3002/remoteEntry.js",
       },
-      shared: ['react', 'react-dom']
-    })
-  ]
+      shared: ["react", "react-dom"],
+    }),
+  ],
 };
 
 // webpack.config.js (Team A)
 module.exports = {
   plugins: [
     new ModuleFederationPlugin({
-      name: 'teamA',
-      filename: 'remoteEntry.js',
+      name: "teamA",
+      filename: "remoteEntry.js",
       exposes: {
-        './App': './src/App'
+        "./App": "./src/App",
       },
-      shared: ['react', 'react-dom']
-    })
-  ]
+      shared: ["react", "react-dom"],
+    }),
+  ],
 };
 ```
 
@@ -63,20 +63,20 @@ type RemoteConfig = {
 async function loadRemoteModule(config: RemoteConfig) {
   // 동적으로 스크립트 로드
   await loadScript(config.url);
-  
+
   // @ts-ignore
   const container = window[config.scope];
   await container.init(__webpack_share_scopes__.default);
-  
+
   const factory = await container.get(config.module);
   const Module = factory();
-  
+
   return Module;
 }
 
 async function loadScript(url: string): Promise<void> {
   return new Promise((resolve, reject) => {
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = url;
     script.onload = () => resolve();
     script.onerror = reject;
@@ -93,33 +93,33 @@ async function loadScript(url: string): Promise<void> {
 // team-a/components/UserProfile.ts
 class UserProfile extends HTMLElement {
   private shadow: ShadowRoot;
-  
+
   constructor() {
     super();
-    this.shadow = this.attachShadow({ mode: 'open' });
+    this.shadow = this.attachShadow({ mode: "open" });
   }
-  
+
   static get observedAttributes() {
-    return ['user-id'];
+    return ["user-id"];
   }
-  
+
   async connectedCallback() {
-    const userId = this.getAttribute('user-id');
+    const userId = this.getAttribute("user-id");
     const user = await this.fetchUser(userId);
     this.render(user);
   }
-  
+
   attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-    if (name === 'user-id' && oldValue !== newValue) {
+    if (name === "user-id" && oldValue !== newValue) {
       this.connectedCallback();
     }
   }
-  
+
   private async fetchUser(userId: string) {
     const response = await fetch(`/api/users/${userId}`);
     return response.json();
   }
-  
+
   private render(user: any) {
     this.shadow.innerHTML = `
       <style>
@@ -136,7 +136,7 @@ class UserProfile extends HTMLElement {
   }
 }
 
-customElements.define('user-profile', UserProfile);
+customElements.define("user-profile", UserProfile);
 ```
 
 ### 2.2 iFrame 통합
@@ -145,31 +145,31 @@ customElements.define('user-profile', UserProfile);
 // iframe-manager.ts
 class IFrameManager {
   private iframes: Map<string, HTMLIFrameElement> = new Map();
-  
+
   createIframe(id: string, url: string) {
-    const iframe = document.createElement('iframe');
+    const iframe = document.createElement("iframe");
     iframe.src = url;
-    iframe.style.border = 'none';
-    iframe.style.width = '100%';
-    
+    iframe.style.border = "none";
+    iframe.style.width = "100%";
+
     // 자동 높이 조정
-    window.addEventListener('message', (event) => {
-      if (event.data.type === 'resize' && event.data.id === id) {
+    window.addEventListener("message", (event) => {
+      if (event.data.type === "resize" && event.data.id === id) {
         iframe.style.height = `${event.data.height}px`;
       }
     });
-    
+
     this.iframes.set(id, iframe);
     return iframe;
   }
-  
+
   sendMessage(id: string, message: any) {
     const iframe = this.iframes.get(id);
     if (iframe) {
-      iframe.contentWindow?.postMessage(message, '*');
+      iframe.contentWindow?.postMessage(message, "*");
     }
   }
-  
+
   destroy(id: string) {
     const iframe = this.iframes.get(id);
     if (iframe) {
@@ -186,24 +186,24 @@ class IFrameManager {
 
 ```javascript
 // root-config.js
-import { registerApplication, start } from 'single-spa';
+import { registerApplication, start } from "single-spa";
 
 registerApplication({
-  name: '@team/navbar',
-  app: () => System.import('@team/navbar'),
-  activeWhen: '/'
+  name: "@team/navbar",
+  app: () => System.import("@team/navbar"),
+  activeWhen: "/",
 });
 
 registerApplication({
-  name: '@team/products',
-  app: () => System.import('@team/products'),
-  activeWhen: '/products'
+  name: "@team/products",
+  app: () => System.import("@team/products"),
+  activeWhen: "/products",
 });
 
 registerApplication({
-  name: '@team/cart',
-  app: () => System.import('@team/cart'),
-  activeWhen: '/cart'
+  name: "@team/cart",
+  app: () => System.import("@team/cart"),
+  activeWhen: "/cart",
 });
 
 start();
@@ -228,32 +228,32 @@ export async function unmount(props) {
 // shared-history.ts
 class SharedHistory {
   private listeners: Set<(location: Location) => void> = new Set();
-  
+
   constructor() {
-    window.addEventListener('popstate', () => {
+    window.addEventListener("popstate", () => {
       this.notifyListeners();
     });
   }
-  
+
   listen(callback: (location: Location) => void) {
     this.listeners.add(callback);
     return () => {
       this.listeners.delete(callback);
     };
   }
-  
+
   push(path: string, state?: any) {
-    history.pushState(state, '', path);
+    history.pushState(state, "", path);
     this.notifyListeners();
   }
-  
+
   replace(path: string, state?: any) {
-    history.replaceState(state, '', path);
+    history.replaceState(state, "", path);
     this.notifyListeners();
   }
-  
+
   private notifyListeners() {
-    this.listeners.forEach(listener => {
+    this.listeners.forEach((listener) => {
       listener(window.location);
     });
   }
@@ -275,19 +275,19 @@ module.exports = {
       shared: {
         react: {
           singleton: true,
-          requiredVersion: '^18.0.0'
+          requiredVersion: "^18.0.0",
         },
-        'react-dom': {
+        "react-dom": {
           singleton: true,
-          requiredVersion: '^18.0.0'
+          requiredVersion: "^18.0.0",
         },
-        '@material-ui/core': {
+        "@material-ui/core": {
           singleton: true,
-          requiredVersion: '^5.0.0'
-        }
-      }
-    })
-  ]
+          requiredVersion: "^5.0.0",
+        },
+      },
+    }),
+  ],
 };
 ```
 
@@ -298,38 +298,38 @@ module.exports = {
 class LazyLoader {
   private loadedModules: Set<string> = new Set();
   private loading: Map<string, Promise<any>> = new Map();
-  
+
   async load(moduleId: string, loader: () => Promise<any>) {
     if (this.loadedModules.has(moduleId)) {
       return;
     }
-    
+
     if (this.loading.has(moduleId)) {
       return this.loading.get(moduleId);
     }
-    
+
     const loadingPromise = loader()
-      .then(module => {
+      .then((module) => {
         this.loadedModules.add(moduleId);
         this.loading.delete(moduleId);
         return module;
       })
-      .catch(error => {
+      .catch((error) => {
         this.loading.delete(moduleId);
         throw error;
       });
-    
+
     this.loading.set(moduleId, loadingPromise);
     return loadingPromise;
   }
-  
+
   preload(moduleId: string, loader: () => Promise<any>) {
-    if (document.readyState === 'complete') {
+    if (document.readyState === "complete") {
       return this.load(moduleId, loader);
     }
-    
-    return new Promise(resolve => {
-      window.addEventListener('load', () => {
+
+    return new Promise((resolve) => {
+      window.addEventListener("load", () => {
         this.load(moduleId, loader).then(resolve);
       });
     });
@@ -337,4 +337,4 @@ class LazyLoader {
 }
 ```
 
-다음 포스트에서는 마이크로 프론트엔드의 배포와 운영 전략에 대해 알아보겠습니다. 
+다음 포스트에서는 마이크로 프론트엔드의 배포와 운영 전략에 대해 알아보겠습니다.

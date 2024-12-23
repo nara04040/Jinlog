@@ -7,7 +7,7 @@ category: "Operating System"
 tags: ["OS", "Process", "Thread"]
 series: "os-series"
 seriesOrder: 1
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 프로세스와 스레드
@@ -62,13 +62,13 @@ enum ProcessState {
 pid_t fork() {
     // 1. PCB 할당
     PCB* new_pcb = allocate_pcb();
-    
+
     // 2. 메모리 공간 할당
     allocate_memory(new_pcb);
-    
+
     // 3. 부모 프로세스 자원 복사
     copy_parent_resources();
-    
+
     return new_pcb->process_id;
 }
 ```
@@ -89,7 +89,7 @@ void* thread_function(void* arg) {
 int main() {
     pthread_t thread;
     int result = pthread_create(&thread, NULL, thread_function, NULL);
-    
+
     // 스레드 종료 대기
     pthread_join(thread, NULL);
     return 0;
@@ -173,4 +173,4 @@ strcpy(shared_memory, "Hello, Shared Memory");
 shmdt(shared_memory);
 ```
 
-다음 포스트에서는 메모리 관리와 가상 메모리에 대해 알아보겠습니다. 
+다음 포스트에서는 메모리 관리와 가상 메모리에 대해 알아보겠습니다.

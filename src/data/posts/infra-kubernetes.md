@@ -7,7 +7,7 @@ category: "Infrastructure"
 tags: ["Kubernetes", "Container", "DevOps"]
 series: "infra-series"
 seriesOrder: 2
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 쿠버네티스 기초와 운영

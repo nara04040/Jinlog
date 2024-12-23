@@ -7,7 +7,8 @@ category: "Web Development"
 tags: ["CSR", "React", "Performance", "Optimization"]
 series: "web-rendering-series"
 seriesOrder: 3
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
+
 ---
 
 # CSR 최적화: 클라이언트 사이드 렌더링 마스터하기

@@ -5,6 +5,8 @@ author: "Jin"
 category: "Development"
 tags: ["React", "Development"]
 description: "리액트 개발자가 알면 좋은 팁들과 문제 해결법"
+imageUrl: "/placeholder.webp"
+
 ---
 # 리액트 개발자가 알면 좋은 팁들과 문제 해결법
 

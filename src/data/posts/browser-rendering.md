@@ -7,7 +7,7 @@ category: "Browser"
 tags: ["Browser", "Rendering", "Performance", "Web Development"]
 series: "browser-series"
 seriesOrder: 1
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 브라우저 렌더링

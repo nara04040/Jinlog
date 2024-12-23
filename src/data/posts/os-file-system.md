@@ -7,7 +7,7 @@ category: "Operating System"
 tags: ["OS", "File System", "I/O"]
 series: "os-series"
 seriesOrder: 3
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 파일 시스템과 입출력
@@ -54,15 +54,15 @@ struct DirectoryEntry {
 void traverse_directory(const char* path) {
     DIR* dir = opendir(path);
     struct dirent* entry;
-    
+
     while ((entry = readdir(dir)) != NULL) {
         struct stat st;
         char full_path[PATH_MAX];
         snprintf(full_path, PATH_MAX, "%s/%s", path, entry->d_name);
-        
+
         if (stat(full_path, &st) == -1)
             continue;
-            
+
         if (S_ISDIR(st.st_mode)) {
             // 디렉토리인 경우 재귀적 순회
             if (strcmp(entry->d_name, ".") != 0 &&
@@ -88,41 +88,41 @@ struct BufferCache {
         bool dirty;
         time_t last_used;
     };
-    
+
     vector<Buffer> buffers;
     size_t cache_size;
-    
+
     void* read_block(size_t block_number) {
         // 캐시에서 검색
         auto it = find_if(buffers.begin(), buffers.end(),
             [block_number](const Buffer& b) {
                 return b.block_number == block_number;
             });
-            
+
         if (it != buffers.end()) {
             it->last_used = time(NULL);
             return it->data;
         }
-        
+
         // 디스크에서 읽기
         void* data = allocate_buffer();
         read_from_disk(block_number, data);
-        
+
         // 캐시에 추가
         if (buffers.size() >= cache_size) {
             flush_least_recently_used();
         }
-        
+
         buffers.push_back({data, block_number, false, time(NULL)});
         return data;
     }
-    
+
     void write_block(size_t block_number, void* data) {
         auto it = find_if(buffers.begin(), buffers.end(),
             [block_number](const Buffer& b) {
                 return b.block_number == block_number;
             });
-            
+
         if (it != buffers.end()) {
             memcpy(it->data, data, BLOCK_SIZE);
             it->dirty = true;
@@ -132,7 +132,7 @@ struct BufferCache {
             if (buffers.size() >= cache_size) {
                 flush_least_recently_used();
             }
-            
+
             void* cached_data = allocate_buffer();
             memcpy(cached_data, data, BLOCK_SIZE);
             buffers.push_back({cached_data, block_number, true, time(NULL)});
@@ -150,32 +150,32 @@ struct FileLock {
         SHARED,    // 읽기 잠금
         EXCLUSIVE  // 쓰기 잠금
     };
-    
+
     struct LockEntry {
         pid_t process_id;
         LockType type;
         off_t start;
         off_t length;
     };
-    
+
     vector<LockEntry> locks;
-    
+
     bool acquire_lock(pid_t pid, LockType type, off_t start, off_t length) {
         // 기존 잠금과 충돌 검사
         for (const auto& lock : locks) {
-            if (lock.start < (start + length) && 
+            if (lock.start < (start + length) &&
                 (lock.start + lock.length) > start) {
                 if (type == EXCLUSIVE || lock.type == EXCLUSIVE) {
                     return false;  // 충돌 발생
                 }
             }
         }
-        
+
         // 새 잠금 추가
         locks.push_back({pid, type, start, length});
         return true;
     }
-    
+
     void release_lock(pid_t pid) {
         locks.erase(
             remove_if(locks.begin(), locks.end(),
@@ -200,17 +200,17 @@ class DiskScheduler {
         uint32_t sector;
         void* data;
     };
-    
+
     vector<Request> queue;
     uint32_t current_cylinder;
     bool moving_up;
-    
+
     void scan() {
         sort(queue.begin(), queue.end(),
             [](const Request& a, const Request& b) {
                 return a.cylinder < b.cylinder;
             });
-            
+
         // 현재 방향으로 요청 처리
         auto it = queue.begin();
         while (it != queue.end()) {
@@ -224,16 +224,16 @@ class DiskScheduler {
                 ++it;
             }
         }
-        
+
         // 방향 전환
         moving_up = !moving_up;
-        
+
         // 남은 요청 처리
         if (!queue.empty()) {
             scan();
         }
     }
-    
+
     void process_request(const Request& req) {
         // 실제 디스크 I/O 처리
         seek_to_cylinder(req.cylinder);
@@ -243,4 +243,4 @@ class DiskScheduler {
 };
 ```
 
-이러한 파일 시스템과 입출력 관리는 운영체제의 핵심 기능 중 하나입니다. 
+이러한 파일 시스템과 입출력 관리는 운영체제의 핵심 기능 중 하나입니다.

@@ -7,7 +7,8 @@ category: "JavaScript"
 tags: ["V8", "JIT", "Compiler", "Performance"]
 series: "js-core-series"
 seriesOrder: 2
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
+
 ---
 
 # JIT 컴파일러의 동작 원리

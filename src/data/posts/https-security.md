@@ -7,7 +7,7 @@ category: "Network"
 tags: ["HTTPS", "Security", "SSL/TLS"]
 series: "http-series"
 seriesOrder: 3
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # HTTPS와 웹 보안

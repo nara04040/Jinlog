@@ -7,7 +7,8 @@ category: "Programming"
 tags: ["JavaScript", "디자인패턴", "TypeScript"]
 series: "js-patterns-series"
 seriesOrder: 1
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
+
 ---
 
 # JavaScript 디자인 패턴 기초

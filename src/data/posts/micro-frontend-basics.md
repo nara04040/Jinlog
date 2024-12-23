@@ -7,7 +7,7 @@ category: "Frontend"
 tags: ["Micro Frontend", "Architecture", "Frontend"]
 series: "micro-frontend-series"
 seriesOrder: 1
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # 마이크로 프론트엔드 기초: 개념과 아키텍처
@@ -71,52 +71,52 @@ const MicroFrontendApp = () => {
 
 ```javascript
 // 런타임 통합
-import { mountTeamApp } from '@team/app';
+import { mountTeamApp } from "@team/app";
 
 class MicroFrontend extends HTMLElement {
   connectedCallback() {
-    const name = this.getAttribute('name');
-    const host = this.getAttribute('host');
-    
+    const name = this.getAttribute("name");
+    const host = this.getAttribute("host");
+
     // 동적으로 스크립트 로드
     const scriptId = `micro-frontend-script-${name}`;
-    
+
     if (document.getElementById(scriptId)) {
       this.renderMicroFrontend(name, host);
       return;
     }
-    
+
     fetch(`${host}/asset-manifest.json`)
-      .then(res => res.json())
-      .then(manifest => {
-        const script = document.createElement('script');
+      .then((res) => res.json())
+      .then((manifest) => {
+        const script = document.createElement("script");
         script.id = scriptId;
-        script.src = `${host}${manifest['main.js']}`;
+        script.src = `${host}${manifest["main.js"]}`;
         script.onload = () => {
           this.renderMicroFrontend(name, host);
         };
         document.head.appendChild(script);
       });
   }
-  
+
   renderMicroFrontend(name, host) {
     mountTeamApp(name, this, host);
   }
 }
 
-customElements.define('micro-frontend', MicroFrontend);
+customElements.define("micro-frontend", MicroFrontend);
 ```
 
 ### 2.2 라우팅 기반 통합
 
 ```typescript
 // App.tsx
-import { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const TeamAApp = lazy(() => import('@team-a/app'));
-const TeamBApp = lazy(() => import('@team-b/app'));
-const TeamCApp = lazy(() => import('@team-c/app'));
+const TeamAApp = lazy(() => import("@team-a/app"));
+const TeamBApp = lazy(() => import("@team-b/app"));
+const TeamCApp = lazy(() => import("@team-c/app"));
 
 function App() {
   return (
@@ -143,22 +143,21 @@ class MicroFrontendBus {
   constructor() {
     this.events = {};
   }
-  
+
   subscribe(event, callback) {
     if (!this.events[event]) {
       this.events[event] = [];
     }
     this.events[event].push(callback);
-    
+
     return () => {
-      this.events[event] = this.events[event]
-        .filter(cb => cb !== callback);
+      this.events[event] = this.events[event].filter((cb) => cb !== callback);
     };
   }
-  
+
   publish(event, data) {
     if (this.events[event]) {
-      this.events[event].forEach(callback => {
+      this.events[event].forEach((callback) => {
         callback(data);
       });
     }
@@ -169,12 +168,12 @@ class MicroFrontendBus {
 const bus = new MicroFrontendBus();
 
 // Team A의 구현
-bus.subscribe('cart:updated', (data) => {
-  console.log('Cart updated:', data);
+bus.subscribe("cart:updated", (data) => {
+  console.log("Cart updated:", data);
 });
 
 // Team B의 발행
-bus.publish('cart:updated', { items: ['item1', 'item2'] });
+bus.publish("cart:updated", { items: ["item1", "item2"] });
 ```
 
 ### 3.2 공유 상태 관리
@@ -184,35 +183,35 @@ bus.publish('cart:updated', { items: ['item1', 'item2'] });
 class SharedStateManager {
   private state: Map<string, any>;
   private subscribers: Map<string, Set<Function>>;
-  
+
   constructor() {
     this.state = new Map();
     this.subscribers = new Map();
   }
-  
+
   setState(key: string, value: any) {
     this.state.set(key, value);
     this.notifySubscribers(key);
   }
-  
+
   getState(key: string) {
     return this.state.get(key);
   }
-  
+
   subscribe(key: string, callback: Function) {
     if (!this.subscribers.has(key)) {
       this.subscribers.set(key, new Set());
     }
     this.subscribers.get(key)?.add(callback);
-    
+
     return () => {
       this.subscribers.get(key)?.delete(callback);
     };
   }
-  
+
   private notifySubscribers(key: string) {
     const value = this.state.get(key);
-    this.subscribers.get(key)?.forEach(callback => {
+    this.subscribers.get(key)?.forEach((callback) => {
       callback(value);
     });
   }
@@ -222,14 +221,14 @@ class SharedStateManager {
 const sharedState = new SharedStateManager();
 
 // Team A
-sharedState.subscribe('user', (user) => {
-  console.log('User updated:', user);
+sharedState.subscribe("user", (user) => {
+  console.log("User updated:", user);
 });
 
 // Team B
-sharedState.setState('user', {
+sharedState.setState("user", {
   id: 1,
-  name: 'John'
+  name: "John",
 });
 ```
 
@@ -239,7 +238,7 @@ sharedState.setState('user', {
 
 ```javascript
 // CSS Modules 사용
-import styles from './TeamApp.module.css';
+import styles from "./TeamApp.module.css";
 
 function TeamApp() {
   return (
@@ -253,24 +252,24 @@ function TeamApp() {
 class IsolatedComponent extends HTMLElement {
   constructor() {
     super();
-    const shadow = this.attachShadow({ mode: 'closed' });
-    
-    const style = document.createElement('style');
+    const shadow = this.attachShadow({ mode: "closed" });
+
+    const style = document.createElement("style");
     style.textContent = `
       .container { padding: 20px; }
       .title { color: blue; }
     `;
-    
-    const container = document.createElement('div');
-    container.setAttribute('class', 'container');
+
+    const container = document.createElement("div");
+    container.setAttribute("class", "container");
     container.innerHTML = '<h1 class="title">Isolated Component</h1>';
-    
+
     shadow.appendChild(style);
     shadow.appendChild(container);
   }
 }
 
-customElements.define('isolated-component', IsolatedComponent);
+customElements.define("isolated-component", IsolatedComponent);
 ```
 
-다음 포스트에서는 마이크로 프론트엔드의 통합 전략에 대해 더 자세히 알아보겠습니다. 
+다음 포스트에서는 마이크로 프론트엔드의 통합 전략에 대해 더 자세히 알아보겠습니다.

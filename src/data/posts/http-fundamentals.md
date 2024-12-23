@@ -7,7 +7,7 @@ category: "Network"
 tags: ["HTTP", "HTTPS", "Protocol"]
 series: "http-series"
 seriesOrder: 1
-imageUrl: "/next.svg"
+imageUrl: "/placeholder.webp"
 ---
 
 # HTTP 완벽 가이드: 기초부터 실무까지
