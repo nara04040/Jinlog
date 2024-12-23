@@ -252,17 +252,20 @@ function PostsContent({
           </button>
         </div>
 
-        <PostFilters
-          categories={categories}
-          selectedCategory={selectedCategory}
-          tags={allTags}
-          selectedTag={selectedTag}
-          series={series}
-          selectedSeries={selectedSeries}
-          onCategoryChange={setSelectedCategory}
-          onTagChange={setSelectedTag}
-          onSeriesChange={handleSeriesSelect}
-        />
+        {viewMode !== 'series' && (
+          <PostFilters
+            categories={categories}
+            selectedCategory={selectedCategory}
+            tags={allTags}
+            selectedTag={selectedTag}
+            series={series}
+            selectedSeries={selectedSeries}
+            onCategoryChange={setSelectedCategory}
+            onTagChange={setSelectedTag}
+            onSeriesChange={handleSeriesSelect}
+          />
+        )}
+        
         
         {viewMode === 'posts' && selectedSeries && (
           <>
@@ -329,7 +332,7 @@ export function Posts(props: {
     <Suspense fallback={<div>Loading...</div>}>
       <PostsContent 
         {...props} 
-        initialViewMode={props.initialViewMode || 'all'}
+        initialViewMode={props.initialViewMode || 'series'}
       />
     </Suspense>
   );
