@@ -13,9 +13,11 @@ export default async function BlogContentsPage({
   const posts = await getAllPosts();
   const series = await getSeries();
   
-  const viewMode = searchParams?.view === 'series' || searchParams?.view === 'posts' 
-    ? searchParams.view 
-    : 'all';
+  const viewMode = searchParams?.view === 'all' 
+    ? 'all' 
+    : searchParams?.view === 'posts'
+      ? 'posts'
+      : 'series';
   
   return (
     <BlogLayout>

@@ -160,6 +160,7 @@ function PostsContent({
 
   useEffect(() => {
     setMounted(true);
+    console.log(viewMode);
   }, []);
 
   useEffect(() => {
@@ -203,7 +204,7 @@ function PostsContent({
     if (mode === 'series') {
       router.push('/blog?view=series');
     } else {
-      router.push('/blog');
+      router.push('/blog?view=all');
     }
   };
 
