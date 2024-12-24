@@ -10,7 +10,7 @@ seriesOrder: 2
 imageUrl: "/react.png"
 ---
 
-# React의 Render Phase와 Commit Phase 깊게 이해하기
+# React의 Render Phase와 Commit Phase 이해하기
 
 React의 렌더링 프로세스는 크게 세 단계로 나눌 수 있습니다
 
