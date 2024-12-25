@@ -1,6 +1,6 @@
 ---
 title: "[오늘의질문] useEffect와 useLayoutEffect의 차이점"
-date: "2024-11-10"
+date: "2024-12-23"
 author: "Jin"
 description: "useEffect와useLayoutEffect차이점에 대해서 설명합니다."
 category: "React"

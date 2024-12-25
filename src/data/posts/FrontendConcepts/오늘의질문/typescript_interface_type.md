@@ -1,6 +1,6 @@
 ---
 title: "[오늘의질문] TypeScript의 type과 Interface 차이점"
-date: "2024-03-22"
+date: "2024-12-22"
 author: "Jin"
 category: "Frontend"
 tags: ["TypeScript", "Interface", "Type"]
@@ -10,7 +10,7 @@ description: "TypeScript에서 type과 interface의 차이점과 사용법을 �
 imageUrl: "/typescript/png"
 ---
 
-## 면접 질문
+## 기술 질문
 
 > "TypeScript의 type과 interface의 차이점을 설명해주세요."
 
@@ -134,20 +134,20 @@ type InputProps = {
 };
 ```
 
-## 사용 가이드라인
+## 사용해야할 상황들
 
-💡 **Interface 사용 추천 상황**:
+💡 **Interface 사용 상황**:
 - 객체의 구조를 정의할 때
 - 클래스가 구현해야 할 규격을 정의할 때
 - 라이브러리나 외부 코드와의 계약을 정의할 때
 
-💡 **Type 사용 추천 상황**:
+💡 **Type 사용 상황**:
 - 유니온이나 인터섹션 타입이 필요할 때
 - 튜플이나 배열 타입을 정의할 때
 - 유틸리티 타입과 함께 사용할 때
 - 복잡한 타입 조합이 필요할 때
 
-## 면접 답변 팁
+## 답변 팁
 
 면접에서 이 질문을 받았을 때, 다음 순서로 답변하면 좋습니다:
 

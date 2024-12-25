@@ -1,6 +1,6 @@
 ---
 title: "[오늘의질문] 디바운스와 쓰로틀의 차이"
-date: "2024-11-10"
+date: "2024-12-10"
 author: "Jin"
 description: "디바운스와 쓰로틀을 기본 개념과 동작 원리를 이해합니다"
 category: "Programming"

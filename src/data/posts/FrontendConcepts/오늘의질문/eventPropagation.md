@@ -1,6 +1,6 @@
 ---
 title: "[오늘의질문] 이벤트 전파에 대해서 설명하세요"
-date: "2024-12-05"
+date: "2024-12-15"
 author: "Jin"
 category: "Development"
 tags: ["JavaScript", "Event"]
